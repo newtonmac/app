@@ -28,15 +28,15 @@ export default function HomePage() {
   const firstName = session.user?.name?.split(" ")[0] ?? "there";
 
   return (
-    <div className="min-h-screen bg-gray-950">
-      <header className="border-b border-gray-800">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-lg font-semibold text-white">My Apps</h1>
+    <div className="min-h-screen bg-[#0a0a0f]">
+      <header className="border-b border-white/[0.06]">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <h1 className="text-lg font-semibold text-white/90 tracking-tight">Dashboard</h1>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-gray-400">{session.user?.email}</span>
+            <span className="text-sm text-white/30">{session.user?.email}</span>
             <button
               onClick={() => signOut({ callbackUrl: "/login" })}
-              className="px-4 py-2 text-sm rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 transition-colors cursor-pointer"
+              className="px-4 py-2 text-sm rounded-full bg-white/[0.06] text-white/50 hover:bg-white/[0.1] hover:text-white/70 transition-all cursor-pointer"
             >
               Sign out
             </button>
@@ -44,17 +44,16 @@ export default function HomePage() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-12">
-        <div className="mb-10">
-          <h2 className="text-2xl font-bold text-white">
+      <main className="max-w-6xl mx-auto px-6 py-8">
+        <div className="mb-8">
+          <h2 className="text-3xl font-light text-white tracking-tight">
             Hello, {firstName}
           </h2>
-          <p className="text-gray-400 mt-1">
-            What would you like to work on today?
-          </p>
         </div>
 
-        <WeatherCard />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[140px]">
+          <WeatherCard />
+        </div>
       </main>
     </div>
   );
