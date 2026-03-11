@@ -4,6 +4,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import WeatherCard from "./components/WeatherCard";
+import AirQualityCard from "./components/AirQualityCard";
 
 export default function HomePage() {
   const { data: session, status } = useSession();
@@ -53,6 +54,7 @@ export default function HomePage() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[140px]">
           <WeatherCard />
+          <AirQualityCard />
         </div>
       </main>
     </div>
