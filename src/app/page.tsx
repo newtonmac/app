@@ -3,29 +3,7 @@
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-
-const appCards = [
-  {
-    title: "Home Dashboard",
-    description: "Overview of your activity and quick links",
-    icon: "🏠",
-  },
-  {
-    title: "Data Viewer",
-    description: "Browse and analyze your datasets",
-    icon: "📊",
-  },
-  {
-    title: "Notes",
-    description: "Create and manage your personal notes",
-    icon: "📝",
-  },
-  {
-    title: "Tools",
-    description: "Utility tools and integrations",
-    icon: "🔧",
-  },
-];
+import WeatherCard from "./components/WeatherCard";
 
 export default function HomePage() {
   const { data: session, status } = useSession();
@@ -76,18 +54,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {appCards.map((card) => (
-            <div
-              key={card.title}
-              className="p-6 rounded-xl bg-gray-900 border border-gray-800 hover:border-gray-700 transition-colors cursor-pointer"
-            >
-              <div className="text-3xl mb-4">{card.icon}</div>
-              <h3 className="text-white font-medium mb-1">{card.title}</h3>
-              <p className="text-gray-500 text-sm">{card.description}</p>
-            </div>
-          ))}
-        </div>
+        <WeatherCard />
       </main>
     </div>
   );
