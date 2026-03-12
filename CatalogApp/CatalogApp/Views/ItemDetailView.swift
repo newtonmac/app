@@ -3,7 +3,7 @@ import SwiftUI
 struct WorkbenchDetailView: View {
     let product: WorkbenchProduct
 
-    @State private var selectedSize: PriceEntry?
+    @State private var selectedSize: WorkbenchSize?
     @State private var selectedLaminateColor: ColorOption?
     @State private var selectedPaintColor: ColorOption?
 
@@ -25,33 +25,15 @@ struct WorkbenchDetailView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 16) {
-                    // Title & Price
-                    HStack(alignment: .top) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(product.topType.rawValue)
-                                .font(.title2)
-                                .fontWeight(.bold)
+                    // Title
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(product.topType.rawValue)
+                            .font(.title2)
+                            .fontWeight(.bold)
 
-                            Text("Model: \(product.modelPrefix)")
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
-                        }
-
-                        Spacer()
-
-                        VStack(alignment: .trailing, spacing: 2) {
-                            if let selected = selectedSize {
-                                Text(selected.formattedPrice)
-                                    .font(.title2)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.blue)
-                            } else {
-                                Text("From \(product.formattedStartingPrice)")
-                                    .font(.title3)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(.blue)
-                            }
-                        }
+                        Text("Model: \(product.modelPrefix)")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
                     }
 
                     // Part Number display
@@ -61,7 +43,7 @@ struct WorkbenchDetailView: View {
                                 .foregroundStyle(.blue)
                             Text("Part #: \(selected.partNumber(modelPrefix: product.modelPrefix))")
                                 .fontWeight(.semibold)
-                            Text("(\(selected.size.displayName))")
+                            Text("(\(selected.displayName))")
                                 .foregroundStyle(.secondary)
                         }
                         .font(.subheadline)
@@ -89,7 +71,7 @@ struct WorkbenchDetailView: View {
 
                     // Size Selector
                     SizeSelectorSection(
-                        priceEntries: product.priceEntries,
+                        sizes: product.sizes,
                         modelPrefix: product.modelPrefix,
                         selectedSize: $selectedSize
                     )
@@ -146,7 +128,7 @@ struct WorkbenchDetailView: View {
         .navigationTitle(product.topType.shortName)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            selectedSize = product.priceEntries.first
+            selectedSize = product.sizes.first
             selectedLaminateColor = product.laminateColors.first
             selectedPaintColor = product.paintColors.first
         }
@@ -156,17 +138,17 @@ struct WorkbenchDetailView: View {
 // MARK: - Size Selector
 
 struct SizeSelectorSection: View {
-    let priceEntries: [PriceEntry]
+    let sizes: [WorkbenchSize]
     let modelPrefix: String
-    @Binding var selectedSize: PriceEntry?
+    @Binding var selectedSize: WorkbenchSize?
 
     // Group by depth
     private var depths: [Int] {
-        Array(Set(priceEntries.map(\.size.depth))).sorted()
+        Array(Set(sizes.map(\.depth))).sorted()
     }
 
-    private func entries(forDepth depth: Int) -> [PriceEntry] {
-        priceEntries.filter { $0.size.depth == depth }.sorted { $0.size.length < $1.size.length }
+    private func sizes(forDepth depth: Int) -> [WorkbenchSize] {
+        sizes.filter { $0.depth == depth }.sorted { $0.length < $1.length }
     }
 
     var body: some View {
@@ -182,22 +164,19 @@ struct SizeSelectorSection: View {
                         .foregroundStyle(.secondary)
 
                     FlowLayout(spacing: 8) {
-                        ForEach(entries(forDepth: depth)) { entry in
-                            Button(action: { selectedSize = entry }) {
+                        ForEach(sizes(forDepth: depth)) { size in
+                            Button(action: { selectedSize = size }) {
                                 VStack(spacing: 2) {
-                                    Text(entry.partNumber(modelPrefix: modelPrefix))
+                                    Text(size.partNumber(modelPrefix: modelPrefix))
                                         .font(.caption2)
                                         .fontWeight(.semibold)
-                                    Text("\(entry.size.depth)\" x \(entry.size.length)\"")
+                                    Text("\(size.depth)\" x \(size.length)\"")
                                         .font(.caption2)
-                                    Text(entry.formattedPrice)
-                                        .font(.caption2)
-                                        .fontWeight(.medium)
                                 }
                                 .padding(.horizontal, 10)
                                 .padding(.vertical, 6)
-                                .background(selectedSize == entry ? Color.blue : Color(.systemGray6))
-                                .foregroundStyle(selectedSize == entry ? .white : .primary)
+                                .background(selectedSize == size ? Color.blue : Color(.systemGray6))
+                                .foregroundStyle(selectedSize == size ? .white : .primary)
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                             }
                             .buttonStyle(.plain)
@@ -242,7 +221,6 @@ struct ColorSelectorSection: View {
                                     )
                             )
                             .overlay(
-                                // White swatch needs a visible border
                                 Circle()
                                     .strokeBorder(Color.gray.opacity(0.2), lineWidth: 0.5)
                             )
@@ -258,7 +236,7 @@ struct ColorSelectorSection: View {
 
 struct SpecificationsSection: View {
     let product: WorkbenchProduct
-    let selectedSize: PriceEntry?
+    let selectedSize: WorkbenchSize?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -269,13 +247,13 @@ struct SpecificationsSection: View {
             SpecRow(label: "Model Prefix", value: product.modelPrefix)
             if let selected = selectedSize {
                 SpecRow(label: "Part Number", value: selected.partNumber(modelPrefix: product.modelPrefix))
-                SpecRow(label: "Size", value: selected.size.displayName)
+                SpecRow(label: "Size", value: selected.displayName)
             }
             SpecRow(label: "Load Capacity", value: product.loadCapacity)
             SpecRow(label: "Core", value: product.coreThickness)
             SpecRow(label: "Apron", value: product.apronSize)
             SpecRow(label: "Ships In", value: product.shipsIn)
-            SpecRow(label: "Available Sizes", value: "\(product.priceEntries.count) configurations")
+            SpecRow(label: "Available Sizes", value: "\(product.sizes.count) configurations")
         }
     }
 }

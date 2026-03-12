@@ -83,6 +83,10 @@ struct WorkbenchSize: Identifiable, Hashable, Codable {
     var displayName: String {
         "\(depth)\"D x \(length)\"L"
     }
+
+    func partNumber(modelPrefix: String) -> String {
+        "\(modelPrefix)\(depth)\(length)"
+    }
 }
 
 // MARK: - Color Options
@@ -93,22 +97,6 @@ struct ColorOption: Identifiable, Hashable, Codable {
     let hexColor: String
 }
 
-// MARK: - Price Entry (size -> price mapping)
-
-struct PriceEntry: Identifiable, Hashable, Codable {
-    var id: String { size.id }
-    let size: WorkbenchSize
-    let price: Double
-
-    var formattedPrice: String {
-        String(format: "$%.2f", price)
-    }
-
-    func partNumber(modelPrefix: String) -> String {
-        "\(modelPrefix)\(size.depth)\(size.length)"
-    }
-}
-
 // MARK: - Workbench Product
 
 struct WorkbenchProduct: Identifiable, Hashable, Codable {
@@ -116,7 +104,7 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
     let series: String
     let topType: TopType
     let modelPrefix: String
-    let priceEntries: [PriceEntry]
+    let sizes: [WorkbenchSize]
     let laminateColors: [ColorOption]
     let paintColors: [ColorOption]
     let loadCapacity: String
@@ -129,7 +117,7 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
         series: String,
         topType: TopType,
         modelPrefix: String,
-        priceEntries: [PriceEntry],
+        sizes: [WorkbenchSize],
         laminateColors: [ColorOption] = [],
         paintColors: [ColorOption] = [],
         loadCapacity: String = "Tested to 6,600 lbs",
@@ -141,21 +129,13 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
         self.series = series
         self.topType = topType
         self.modelPrefix = modelPrefix
-        self.priceEntries = priceEntries
+        self.sizes = sizes
         self.laminateColors = laminateColors
         self.paintColors = paintColors
         self.loadCapacity = loadCapacity
         self.coreThickness = coreThickness
         self.apronSize = apronSize
         self.shipsIn = shipsIn
-    }
-
-    var startingPrice: Double {
-        priceEntries.map(\.price).min() ?? 0
-    }
-
-    var formattedStartingPrice: String {
-        String(format: "$%.2f", startingPrice)
     }
 
     var displayName: String {

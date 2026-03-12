@@ -62,12 +62,12 @@ struct ProductCard: View {
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
 
-            Text("From \(product.formattedStartingPrice)")
+            Text("Model: \(product.modelPrefix)")
                 .font(.caption)
                 .fontWeight(.semibold)
                 .foregroundStyle(.blue)
 
-            Text("Model: \(product.modelPrefix)")
+            Text("\(product.sizes.count) sizes available")
                 .font(.caption2)
                 .foregroundStyle(.secondary)
 

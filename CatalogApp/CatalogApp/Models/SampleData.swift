@@ -40,15 +40,51 @@ struct KennedyData {
         ColorOption(name: "Dark Gray", hexColor: "#636366"),
     ]
 
-    // MARK: - Common Size/Price Helpers
+    // MARK: - Standard Sizes
 
-    static func size(_ d: Int, _ l: Int) -> WorkbenchSize {
-        WorkbenchSize(depth: d, length: l)
-    }
+    // All Kennedy workbenches share these depth/length combinations
+    static let standardSizes: [WorkbenchSize] = {
+        let depths = [24, 30, 36, 48]
+        let lengths = [24, 30, 36, 48, 60, 72, 96, 120]
+        var sizes: [WorkbenchSize] = []
+        for depth in depths {
+            for length in lengths where length >= depth {
+                sizes.append(WorkbenchSize(depth: depth, length: length))
+            }
+        }
+        return sizes
+    }()
 
-    static func entry(_ d: Int, _ l: Int, _ p: Double) -> PriceEntry {
-        PriceEntry(size: size(d, l), price: p)
-    }
+    // Stainless steel uses 45" depth instead of 48", and 117" instead of 120"
+    static let stainlessSteelSizes: [WorkbenchSize] = {
+        let configs: [(Int, Int)] = [
+            (24, 24), (24, 30), (24, 36), (24, 48), (24, 60), (24, 72), (24, 96), (24, 117),
+            (30, 30), (30, 36), (30, 48), (30, 60), (30, 72), (30, 96), (30, 117),
+            (36, 36), (36, 48), (36, 60), (36, 72), (36, 96), (36, 117),
+            (45, 48), (45, 60), (45, 72), (45, 96), (45, 117),
+        ]
+        return configs.map { WorkbenchSize(depth: $0.0, length: $0.1) }
+    }()
+
+    // Painted steel uses 45" depth instead of 48"
+    static let paintedSteelSizes: [WorkbenchSize] = {
+        let configs: [(Int, Int)] = [
+            (24, 24), (24, 30), (24, 36), (24, 48), (24, 60), (24, 72), (24, 96),
+            (30, 30), (30, 36), (30, 48), (30, 60), (30, 72), (30, 96),
+            (36, 36), (36, 48), (36, 60), (36, 72), (36, 96),
+            (45, 48), (45, 60), (45, 72), (45, 96),
+        ]
+        return configs.map { WorkbenchSize(depth: $0.0, length: $0.1) }
+    }()
+
+    // Cleanroom ESD has fewer sizes
+    static let cleanroomESDSizes: [WorkbenchSize] = {
+        let configs: [(Int, Int)] = [
+            (24, 24), (24, 30), (24, 36), (24, 48), (24, 60), (24, 72), (24, 96), (24, 120),
+            (30, 30), (30, 36), (30, 48), (30, 60), (30, 72), (30, 96), (30, 120),
+        ]
+        return configs.map { WorkbenchSize(depth: $0.0, length: $0.1) }
+    }()
 
     // MARK: - Kennedy Series Products
 
@@ -57,6 +93,7 @@ struct KennedyData {
         formicaTMoldEdge,
         formicaSquareEdge,
         butcherBlockOiled,
+        butcherBlockLacquered,
         esdStaticControl,
         cleanroomLaminate,
         cleanroomESD,
@@ -70,18 +107,7 @@ struct KennedyData {
         series: "Kennedy",
         topType: .formicaRoundEdge,
         modelPrefix: "KF",
-        priceEntries: [
-            entry(24, 24, 280.97), entry(24, 30, 298.97), entry(24, 36, 316.97),
-            entry(24, 48, 350.96), entry(24, 60, 385.96), entry(24, 72, 420.96),
-            entry(24, 96, 490.95), entry(24, 120, 559.95),
-            entry(30, 30, 327.97), entry(30, 36, 348.96), entry(30, 48, 389.96),
-            entry(30, 60, 429.96), entry(30, 72, 471.95), entry(30, 96, 553.95),
-            entry(30, 120, 633.94),
-            entry(36, 36, 380.96), entry(36, 48, 427.96), entry(36, 60, 474.95),
-            entry(36, 72, 523.95), entry(36, 96, 618.94), entry(36, 120, 711.93),
-            entry(48, 48, 494.95), entry(48, 60, 552.95), entry(48, 72, 611.94),
-            entry(48, 96, 731.93), entry(48, 120, 849.92),
-        ],
+        sizes: standardSizes,
         laminateColors: standardLaminateColors,
         paintColors: standardPaintColors
     )
@@ -91,18 +117,7 @@ struct KennedyData {
         series: "Kennedy",
         topType: .formicaTMoldEdge,
         modelPrefix: "KT",
-        priceEntries: [
-            entry(24, 24, 282.97), entry(24, 30, 300.97), entry(24, 36, 318.97),
-            entry(24, 48, 352.96), entry(24, 60, 387.96), entry(24, 72, 422.96),
-            entry(24, 96, 492.95), entry(24, 120, 561.95),
-            entry(30, 30, 329.97), entry(30, 36, 350.96), entry(30, 48, 391.96),
-            entry(30, 60, 431.96), entry(30, 72, 473.95), entry(30, 96, 555.95),
-            entry(30, 120, 635.94),
-            entry(36, 36, 382.96), entry(36, 48, 429.96), entry(36, 60, 476.95),
-            entry(36, 72, 525.95), entry(36, 96, 620.94), entry(36, 120, 713.93),
-            entry(48, 48, 496.95), entry(48, 60, 554.95), entry(48, 72, 613.94),
-            entry(48, 96, 733.93), entry(48, 120, 851.92),
-        ],
+        sizes: standardSizes,
         laminateColors: standardLaminateColors,
         paintColors: standardPaintColors
     )
@@ -112,18 +127,7 @@ struct KennedyData {
         series: "Kennedy",
         topType: .formicaSquareEdge,
         modelPrefix: "KE",
-        priceEntries: [
-            entry(24, 24, 273.97), entry(24, 30, 291.97), entry(24, 36, 309.97),
-            entry(24, 48, 343.96), entry(24, 60, 378.96), entry(24, 72, 413.96),
-            entry(24, 96, 483.95), entry(24, 120, 552.95),
-            entry(30, 30, 320.97), entry(30, 36, 341.96), entry(30, 48, 382.96),
-            entry(30, 60, 422.96), entry(30, 72, 464.95), entry(30, 96, 546.95),
-            entry(30, 120, 626.94),
-            entry(36, 36, 373.96), entry(36, 48, 420.96), entry(36, 60, 467.95),
-            entry(36, 72, 516.95), entry(36, 96, 611.94), entry(36, 120, 704.93),
-            entry(48, 48, 487.95), entry(48, 60, 545.95), entry(48, 72, 604.94),
-            entry(48, 96, 724.93), entry(48, 120, 842.92),
-        ],
+        sizes: standardSizes,
         laminateColors: standardLaminateColors,
         paintColors: standardPaintColors
     )
@@ -133,38 +137,25 @@ struct KennedyData {
         series: "Kennedy",
         topType: .butcherBlockOiled,
         modelPrefix: "KWR",
-        priceEntries: [
-            entry(24, 24, 352.96), entry(24, 30, 392.96), entry(24, 36, 429.96),
-            entry(24, 48, 504.95), entry(24, 60, 579.95), entry(24, 72, 654.94),
-            entry(24, 96, 842.92), entry(24, 120, 997.90),
-            entry(30, 30, 440.96), entry(30, 36, 487.95), entry(30, 48, 577.95),
-            entry(30, 60, 667.94), entry(30, 72, 757.93), entry(30, 96, 979.90),
-            entry(30, 120, 1161.88),
-            entry(36, 36, 545.95), entry(36, 48, 650.94), entry(36, 60, 755.93),
-            entry(36, 72, 862.92), entry(36, 96, 1115.89), entry(36, 120, 1329.87),
-            entry(48, 48, 792.92), entry(48, 60, 920.91), entry(48, 72, 1050.90),
-            entry(48, 96, 1380.86), entry(48, 120, 1684.83),
-        ],
+        sizes: standardSizes,
         paintColors: standardPaintColors
     )
 
-    // MARK: ESD Static Control (Model KD-222)
+    // MARK: Solid Butcher Block - Lacquered (Model KWR-L)
+    static let butcherBlockLacquered = WorkbenchProduct(
+        series: "Kennedy",
+        topType: .butcherBlockLacquered,
+        modelPrefix: "KWR-L",
+        sizes: standardSizes,
+        paintColors: standardPaintColors
+    )
+
+    // MARK: ESD Static Control (Model KD)
     static let esdStaticControl = WorkbenchProduct(
         series: "Kennedy",
         topType: .esdStaticControl,
         modelPrefix: "KD",
-        priceEntries: [
-            entry(24, 24, 307.99), entry(24, 30, 325.99), entry(24, 36, 345.99),
-            entry(24, 48, 381.99), entry(24, 60, 419.99), entry(24, 72, 455.99),
-            entry(24, 96, 529.99), entry(24, 120, 601.99),
-            entry(30, 30, 356.99), entry(30, 36, 379.99), entry(30, 48, 423.99),
-            entry(30, 60, 466.99), entry(30, 72, 511.99), entry(30, 96, 599.99),
-            entry(30, 120, 685.99),
-            entry(36, 36, 413.99), entry(36, 48, 463.99), entry(36, 60, 513.99),
-            entry(36, 72, 565.99), entry(36, 96, 669.99), entry(36, 120, 769.99),
-            entry(48, 48, 535.99), entry(48, 60, 597.99), entry(48, 72, 661.99),
-            entry(48, 96, 791.99), entry(48, 120, 917.99),
-        ],
+        sizes: standardSizes,
         laminateColors: esdLaminateColors,
         paintColors: esdPaintColors
     )
@@ -174,16 +165,7 @@ struct KennedyData {
         series: "Kennedy",
         topType: .cleanroomLaminate,
         modelPrefix: "KCR",
-        priceEntries: [
-            entry(24, 24, 318.97), entry(24, 30, 339.97), entry(24, 36, 359.97),
-            entry(24, 48, 399.96), entry(24, 60, 439.96), entry(24, 72, 479.96),
-            entry(24, 96, 559.95), entry(24, 120, 638.94),
-            entry(30, 30, 374.96), entry(30, 36, 398.96), entry(30, 48, 446.96),
-            entry(30, 60, 492.95), entry(30, 72, 540.95), entry(30, 96, 634.94),
-            entry(30, 120, 725.93),
-            entry(36, 36, 437.96), entry(36, 48, 491.95), entry(36, 60, 545.95),
-            entry(36, 72, 601.94), entry(36, 96, 711.93), entry(36, 120, 818.92),
-        ],
+        sizes: standardSizes,
         laminateColors: standardLaminateColors,
         paintColors: [
             ColorOption(name: "Blue", hexColor: "#1A5276"),
@@ -194,19 +176,12 @@ struct KennedyData {
         ]
     )
 
-    // MARK: Cleanroom ESD (Model KDCR-222)
+    // MARK: Cleanroom ESD (Model KDCR)
     static let cleanroomESD = WorkbenchProduct(
         series: "Kennedy",
         topType: .cleanroomESD,
         modelPrefix: "KDCR",
-        priceEntries: [
-            entry(24, 24, 322.99), entry(24, 30, 349.99), entry(24, 36, 378.99),
-            entry(24, 48, 433.99), entry(24, 60, 488.99), entry(24, 72, 545.99),
-            entry(24, 96, 655.99), entry(24, 120, 762.99),
-            entry(30, 30, 399.99), entry(30, 36, 449.99), entry(30, 48, 520.99),
-            entry(30, 60, 595.99), entry(30, 72, 678.99), entry(30, 96, 812.99),
-            entry(30, 120, 945.99),
-        ],
+        sizes: cleanroomESDSizes,
         laminateColors: esdLaminateColors,
         paintColors: esdPaintColors
     )
@@ -216,18 +191,7 @@ struct KennedyData {
         series: "Kennedy",
         topType: .stainlessSteel,
         modelPrefix: "KN",
-        priceEntries: [
-            entry(24, 24, 385.96), entry(24, 30, 423.96), entry(24, 36, 462.95),
-            entry(24, 48, 540.95), entry(24, 60, 615.94), entry(24, 72, 693.93),
-            entry(24, 96, 883.91), entry(24, 117, 1029.90),
-            entry(30, 30, 475.95), entry(30, 36, 522.95), entry(30, 48, 615.94),
-            entry(30, 60, 706.93), entry(30, 72, 800.92), entry(30, 96, 1020.90),
-            entry(30, 117, 1198.88),
-            entry(36, 36, 582.94), entry(36, 48, 690.93), entry(36, 60, 797.92),
-            entry(36, 72, 906.91), entry(36, 96, 1157.88), entry(36, 117, 1366.86),
-            entry(45, 48, 841.92), entry(45, 60, 978.90), entry(45, 72, 1118.89),
-            entry(45, 96, 1470.85), entry(45, 117, 1745.83),
-        ],
+        sizes: stainlessSteelSizes,
         paintColors: standardPaintColors
     )
 
@@ -236,17 +200,7 @@ struct KennedyData {
         series: "Kennedy",
         topType: .paintedSteel,
         modelPrefix: "KM",
-        priceEntries: [
-            entry(24, 24, 269.99), entry(24, 30, 290.99), entry(24, 36, 313.99),
-            entry(24, 48, 357.99), entry(24, 60, 400.99), entry(24, 72, 445.99),
-            entry(24, 96, 531.99),
-            entry(30, 30, 318.99), entry(30, 36, 345.99), entry(30, 48, 397.99),
-            entry(30, 60, 448.99), entry(30, 72, 500.99), entry(30, 96, 602.99),
-            entry(36, 36, 377.99), entry(36, 48, 436.99), entry(36, 60, 495.99),
-            entry(36, 72, 556.99), entry(36, 96, 674.99),
-            entry(45, 48, 516.99), entry(45, 60, 591.99), entry(45, 72, 667.99),
-            entry(45, 96, 816.99),
-        ],
+        sizes: paintedSteelSizes,
         paintColors: standardPaintColors
     )
 
@@ -255,18 +209,7 @@ struct KennedyData {
         series: "Kennedy",
         topType: .disposableParticleboard,
         modelPrefix: "KPB",
-        priceEntries: [
-            entry(24, 24, 241.98), entry(24, 30, 255.97), entry(24, 36, 270.97),
-            entry(24, 48, 299.97), entry(24, 60, 327.97), entry(24, 72, 357.96),
-            entry(24, 96, 446.96), entry(24, 120, 498.95),
-            entry(30, 30, 276.97), entry(30, 36, 293.97), entry(30, 48, 327.97),
-            entry(30, 60, 358.96), entry(30, 72, 392.96), entry(30, 96, 489.95),
-            entry(30, 120, 548.95),
-            entry(36, 36, 317.97), entry(36, 48, 354.96), entry(36, 60, 389.96),
-            entry(36, 72, 427.96), entry(36, 96, 532.95), entry(36, 120, 599.94),
-            entry(48, 48, 409.96), entry(48, 60, 452.95), entry(48, 72, 497.95),
-            entry(48, 96, 651.93), entry(48, 120, 738.93),
-        ],
+        sizes: standardSizes,
         paintColors: standardPaintColors
     )
 }
