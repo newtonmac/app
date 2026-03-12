@@ -55,6 +55,34 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         }
     }
 
+    var topMaterial: String {
+        switch self {
+        case .formicaRoundEdge, .formicaTMoldEdge, .formicaSquareEdge: return "Formica Laminate"
+        case .butcherBlock1Oiled, .butcherBlock1Lacquered: return "Solid Butcher Block 1\""
+        case .butcherBlock175Oiled, .butcherBlock175Lacquered: return "Solid Butcher Block 1-3/4\""
+        case .esdStaticControl: return "ESD Static Control Laminate"
+        case .cleanroomLaminate: return "Cleanroom Laminate"
+        case .cleanroomESD: return "Cleanroom ESD Laminate"
+        case .stainlessSteel: return "Stainless Steel"
+        case .paintedSteel: return "Painted Steel"
+        case .disposableParticleboard: return "Particleboard"
+        }
+    }
+
+    var edgeType: String {
+        switch self {
+        case .formicaRoundEdge: return "Radiused"
+        case .formicaTMoldEdge: return "T-Mold Bumper"
+        case .formicaSquareEdge: return "Square Cut"
+        case .butcherBlock1Oiled, .butcherBlock175Oiled: return "Radiused (Oiled)"
+        case .butcherBlock1Lacquered, .butcherBlock175Lacquered: return "Square Cut (Lacquered)"
+        case .esdStaticControl, .cleanroomLaminate, .cleanroomESD: return "Square Cut"
+        case .stainlessSteel: return "Square Cut"
+        case .paintedSteel: return "Square Cut"
+        case .disposableParticleboard: return "Square Cut"
+        }
+    }
+
     var imageName: String {
         switch self {
         case .formicaRoundEdge: return "formica_round"
@@ -76,7 +104,7 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
     var description: String {
         switch self {
         case .formicaRoundEdge, .formicaTMoldEdge, .formicaSquareEdge:
-            return "Formica laminate surface on 1.2\" solid wood core. Durable and easy to clean."
+            return "Formica laminate surface on 1.125\" solid wood core. Durable and easy to clean."
         case .butcherBlock1Oiled:
             return "100% solid butcher block hardwood, 1\" thick, oiled finish with round front edge."
         case .butcherBlock1Lacquered:
@@ -163,7 +191,7 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
         paintColors: [ColorOption] = [],
         gaugeOptions: [GaugeOption] = [],
         loadCapacity: String = "Tested to 6,600 lbs",
-        coreThickness: String = "1.2\" Solid Wood Core",
+        coreThickness: String = "1.125\" Solid Wood Core",
         apronSize: String = "2\" x 1\" Tube",
         shipsIn: String = "1-5 Business Days"
     ) {
