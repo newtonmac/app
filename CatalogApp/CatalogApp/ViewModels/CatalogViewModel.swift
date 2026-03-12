@@ -2,12 +2,16 @@ import Foundation
 
 @Observable
 class CatalogViewModel {
-    var kennedyProducts: [WorkbenchProduct] = KennedyData.allProducts
+    var products: [WorkbenchProduct]
     var selectedTopType: TopType?
     var searchText: String = ""
 
+    init(series: WorkbenchSeries = .kennedy) {
+        self.products = SeriesDataProvider.allProducts(for: series)
+    }
+
     var filteredProducts: [WorkbenchProduct] {
-        var result = kennedyProducts
+        var result = products
 
         if let topType = selectedTopType {
             result = result.filter { $0.topType == topType }
@@ -26,7 +30,7 @@ class CatalogViewModel {
 
     /// Only the top types that appear in allProducts (consolidated variants)
     var topTypes: [TopType] {
-        kennedyProducts.map(\.topType)
+        products.map(\.topType)
     }
 
     func selectTopType(_ topType: TopType?) {

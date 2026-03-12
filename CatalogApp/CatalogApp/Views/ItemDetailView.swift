@@ -29,13 +29,18 @@ struct WorkbenchDetailView: View {
     /// Returns the correct product variant based on user selections.
     private var activeProduct: WorkbenchProduct {
         if product.topType.isFormica {
-            return KennedyData.formicaProduct(for: selectedEdgeStyle)
+            return seriesData.formicaProduct(for: selectedEdgeStyle)
         } else if product.topType.isButcherBlock {
-            return KennedyData.butcherBlockProduct(thickness: selectedBlockThickness, finish: selectedBlockFinish)
+            return seriesData.butcherBlockProduct(thickness: selectedBlockThickness, finish: selectedBlockFinish)
         } else if product.topType.isResin {
-            return KennedyData.resinProduct(color: selectedResinColor, thickness: selectedResinThickness)
+            return seriesData.resinProduct(color: selectedResinColor, thickness: selectedResinThickness)
         }
         return product
+    }
+
+    /// Resolves the correct series data helper based on the product's series name.
+    private var seriesData: SeriesDataProvider {
+        SeriesDataProvider(series: product.series)
     }
 
     var body: some View {
@@ -59,7 +64,7 @@ struct WorkbenchDetailView: View {
                             .background(Color.blue.opacity(0.08))
                     }
 
-                    Text("Kennedy Series")
+                    Text("\(product.series) Series")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

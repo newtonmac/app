@@ -45,12 +45,7 @@ struct WorkbenchSeriesView: View {
         .navigationTitle("Workbenches")
         .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(for: WorkbenchSeries.self) { series in
-            switch series {
-            case .kennedy:
-                KennedySeriesView()
-            default:
-                ComingSoonSeriesView(series: series)
-            }
+            GenericSeriesView(series: series)
         }
     }
 }
