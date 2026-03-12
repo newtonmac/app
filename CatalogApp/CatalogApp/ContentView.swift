@@ -22,12 +22,11 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.top, 8)
 
-                    // Top Type Filter
-                    TopTypeFilterView(
-                        topTypes: viewModel.topTypes,
-                        selectedTopType: viewModel.selectedTopType,
-                        onSelect: { viewModel.selectTopType($0) }
-                    )
+                    // Top Count
+                    Text("\(viewModel.topTypes.count) Top Options")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .padding(.horizontal)
 
                     // Product Grid
                     ProductGridView(products: viewModel.filteredProducts)
@@ -35,35 +34,6 @@ struct ContentView: View {
                 .padding(.bottom)
             }
             .searchable(text: $viewModel.searchText, prompt: "Search workbenches...")
-        }
-    }
-}
-
-// MARK: - Top Type Filter
-
-struct TopTypeFilterView: View {
-    let topTypes: [TopType]
-    let selectedTopType: TopType?
-    let onSelect: (TopType) -> Void
-
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 10) {
-                ForEach(topTypes) { topType in
-                    Button(action: { onSelect(topType) }) {
-                        Text(topType.gridName)
-                            .font(.caption)
-                            .fontWeight(selectedTopType == topType ? .semibold : .regular)
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 8)
-                            .background(selectedTopType == topType ? Color.blue : Color(.systemGray6))
-                            .foregroundStyle(selectedTopType == topType ? .white : .primary)
-                            .clipShape(Capsule())
-                    }
-                    .buttonStyle(.plain)
-                }
-            }
-            .padding(.horizontal)
         }
     }
 }
