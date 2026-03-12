@@ -56,13 +56,14 @@ struct SeriesCard: View {
     let series: WorkbenchSeries
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
+        VStack(alignment: .leading, spacing: 0) {
             if UIImage(named: series.imageName) != nil {
                 Image(series.imageName)
                     .resizable()
                     .scaledToFit()
                     .frame(maxWidth: .infinity)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .padding(.bottom, -8)
             } else {
                 Image(systemName: series.systemImage)
                     .font(.system(size: 28))
@@ -78,6 +79,7 @@ struct SeriesCard: View {
                 .fontWeight(.medium)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
+                .padding(.top, 2)
 
             Text(series.subtitle)
                 .font(.caption2)
