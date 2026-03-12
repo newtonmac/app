@@ -27,15 +27,9 @@ struct WorkbenchDetailView: View {
 
                 VStack(alignment: .leading, spacing: 16) {
                     // Title
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(product.topType.rawValue)
-                            .font(.title2)
-                            .fontWeight(.bold)
-
-                        Text("Model: \(product.modelPrefix)")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                    }
+                    Text("\(product.series) \(product.topType.shortName)")
+                        .font(.title2)
+                        .fontWeight(.bold)
 
                     // Part Number display
                     if let selected = selectedSize {
@@ -309,8 +303,7 @@ struct SpecificationsSection: View {
             Text("Specifications")
                 .font(.headline)
 
-            SpecRow(label: "Series", value: product.series)
-            SpecRow(label: "Model Prefix", value: product.modelPrefix)
+            SpecRow(label: "Series", value: "\(product.series) \(product.topType.shortName)")
             if let selected = selectedSize {
                 SpecRow(label: "Part Number", value: selected.partNumber(modelPrefix: product.modelPrefix, gaugeSuffix: selectedGauge?.suffix))
                 SpecRow(label: "Size", value: selected.displayName)
