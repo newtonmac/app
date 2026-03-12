@@ -51,19 +51,18 @@ struct ProductCard: View {
             if UIImage(named: product.topType.imageName) != nil {
                 Image(product.topType.imageName)
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
                     .frame(maxWidth: .infinity)
-                    .frame(height: 80)
-                    .clipped()
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .frame(height: 60)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
             } else {
                 Image(systemName: "table.furniture")
-                    .font(.system(size: 32))
+                    .font(.system(size: 28))
                     .foregroundStyle(.blue)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 80)
+                    .frame(height: 60)
                     .background(Color.blue.opacity(0.08))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
             }
 
             Text("\(product.series) \(product.topType.shortName)")
