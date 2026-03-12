@@ -18,10 +18,6 @@ struct ContentView: View {
                         Text("Kennedy Series")
                             .font(.title3)
                             .fontWeight(.semibold)
-
-                        Text("Our best-selling workbench • Tested to 6,600 lbs")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.top, 8)
@@ -55,7 +51,7 @@ struct TopTypeFilterView: View {
             HStack(spacing: 10) {
                 ForEach(topTypes) { topType in
                     Button(action: { onSelect(topType) }) {
-                        Text(topType.shortName)
+                        Text(topType.gridName)
                             .font(.caption)
                             .fontWeight(selectedTopType == topType ? .semibold : .regular)
                             .padding(.horizontal, 12)

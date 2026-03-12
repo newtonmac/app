@@ -156,14 +156,28 @@ struct KennedyData {
 
     // MARK: - Kennedy Series Products
 
+    /// Maps edge style to the matching Formica product
+    static func formicaProduct(for edgeStyle: FormicaEdgeStyle) -> WorkbenchProduct {
+        switch edgeStyle {
+        case .square: return formicaSquareEdge
+        case .round: return formicaRoundEdge
+        case .tMold: return formicaTMoldEdge
+        }
+    }
+
+    /// Maps thickness + finish to the matching Butcher Block product
+    static func butcherBlockProduct(thickness: ButcherBlockThickness, finish: ButcherBlockFinish) -> WorkbenchProduct {
+        switch (thickness, finish) {
+        case (.one, .oiled): return butcherBlock1Oiled
+        case (.one, .lacquered): return butcherBlock1Lacquered
+        case (.oneThreeQuarter, .oiled): return butcherBlock175Oiled
+        case (.oneThreeQuarter, .lacquered): return butcherBlock175Lacquered
+        }
+    }
+
     static let allProducts: [WorkbenchProduct] = [
-        formicaRoundEdge,
-        formicaTMoldEdge,
-        formicaSquareEdge,
-        butcherBlock1Oiled,
-        butcherBlock1Lacquered,
-        butcherBlock175Oiled,
-        butcherBlock175Lacquered,
+        formicaSquareEdge,      // Single Formica entry; edge variants selectable in detail view
+        butcherBlock1Oiled,     // Single Butcher Block entry; thickness/finish selectable in detail view
         esdStaticControl,
         cleanroomLaminate,
         cleanroomESD,

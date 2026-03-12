@@ -10,11 +10,6 @@ struct ProductGridView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("\(products.count) Top Options")
-                .font(.headline)
-                .foregroundStyle(.secondary)
-                .padding(.horizontal)
-
             if products.isEmpty {
                 ContentUnavailableView(
                     "No Workbenches Found",
@@ -65,7 +60,7 @@ struct ProductCard: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             }
 
-            Text("\(product.series) \(product.topType.shortName)")
+            Text(product.topType.gridName)
                 .font(.subheadline)
                 .fontWeight(.medium)
                 .lineLimit(2)

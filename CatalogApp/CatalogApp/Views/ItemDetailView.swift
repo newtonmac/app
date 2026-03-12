@@ -7,14 +7,27 @@ struct WorkbenchDetailView: View {
     @State private var selectedGauge: GaugeOption?
     @State private var selectedLaminateColor: ColorOption?
     @State private var selectedPaintColor: ColorOption?
+    @State private var selectedEdgeStyle: FormicaEdgeStyle = .square
+    @State private var selectedBlockThickness: ButcherBlockThickness = .one
+    @State private var selectedBlockFinish: ButcherBlockFinish = .oiled
+
+    /// Returns the correct product variant based on user selections.
+    private var activeProduct: WorkbenchProduct {
+        if product.topType.isFormica {
+            return KennedyData.formicaProduct(for: selectedEdgeStyle)
+        } else if product.topType.isButcherBlock {
+            return KennedyData.butcherBlockProduct(thickness: selectedBlockThickness, finish: selectedBlockFinish)
+        }
+        return product
+    }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 // Hero
                 VStack(spacing: 8) {
-                    if UIImage(named: product.topType.imageName) != nil {
-                        Image(product.topType.imageName)
+                    if UIImage(named: activeProduct.topType.imageName) != nil {
+                        Image(activeProduct.topType.imageName)
                             .resizable()
                             .scaledToFill()
                             .frame(maxWidth: .infinity)
@@ -36,7 +49,7 @@ struct WorkbenchDetailView: View {
 
                 VStack(alignment: .leading, spacing: 16) {
                     // Title
-                    Text("\(product.series) \(product.topType.shortName)")
+                    Text(activeProduct.topType.gridName)
                         .font(.title2)
                         .fontWeight(.bold)
 
@@ -45,7 +58,7 @@ struct WorkbenchDetailView: View {
                         HStack(spacing: 6) {
                             Image(systemName: "number")
                                 .foregroundStyle(.blue)
-                            Text("Part #: \(selected.partNumber(modelPrefix: product.modelPrefix, gaugeSuffix: selectedGauge?.suffix))")
+                            Text("Part #: \(selected.partNumber(modelPrefix: activeProduct.modelPrefix, gaugeSuffix: selectedGauge?.suffix))")
                                 .fontWeight(.semibold)
                             Text("(\(selected.displayName))")
                                 .foregroundStyle(.secondary)
@@ -59,23 +72,40 @@ struct WorkbenchDetailView: View {
 
                     // Specs badges
                     HStack(spacing: 12) {
-                        SpecBadge(icon: "scalemass", text: product.loadCapacity)
+                        SpecBadge(icon: "scalemass", text: activeProduct.loadCapacity)
                     }
 
                     Divider()
 
                     // Description
-                    Text(product.topType.description)
+                    Text(activeProduct.topType.description)
                         .font(.body)
                         .foregroundStyle(.secondary)
                         .lineSpacing(4)
 
                     Divider()
 
+                    // Edge Style Selector (Formica only)
+                    if product.topType.isFormica {
+                        EdgeStyleSelectorSection(selectedEdgeStyle: $selectedEdgeStyle)
+
+                        Divider()
+                    }
+
+                    // Butcher Block Options
+                    if product.topType.isButcherBlock {
+                        ButcherBlockSelectorSection(
+                            selectedThickness: $selectedBlockThickness,
+                            selectedFinish: $selectedBlockFinish
+                        )
+
+                        Divider()
+                    }
+
                     // Gauge Selector (if available)
-                    if !product.gaugeOptions.isEmpty {
+                    if !activeProduct.gaugeOptions.isEmpty {
                         GaugeSelectorSection(
-                            gaugeOptions: product.gaugeOptions,
+                            gaugeOptions: activeProduct.gaugeOptions,
                             selectedGauge: $selectedGauge
                         )
 
@@ -84,28 +114,28 @@ struct WorkbenchDetailView: View {
 
                     // Size Selector
                     SizeSelectorSection(
-                        sizes: product.sizes,
-                        modelPrefix: product.modelPrefix,
+                        sizes: activeProduct.sizes,
+                        modelPrefix: activeProduct.modelPrefix,
                         gaugeSuffix: selectedGauge?.suffix,
                         selectedSize: $selectedSize
                     )
 
                     // Laminate Color (if available)
-                    if !product.laminateColors.isEmpty {
+                    if !activeProduct.laminateColors.isEmpty {
                         Divider()
                         ColorSelectorSection(
                             title: "Laminate Color",
-                            colors: product.laminateColors,
+                            colors: activeProduct.laminateColors,
                             selectedColor: $selectedLaminateColor
                         )
                     }
 
                     // Paint Color
-                    if !product.paintColors.isEmpty {
+                    if !activeProduct.paintColors.isEmpty {
                         Divider()
                         ColorSelectorSection(
                             title: "Frame Paint Color",
-                            colors: product.paintColors,
+                            colors: activeProduct.paintColors,
                             selectedColor: $selectedPaintColor
                         )
                     }
@@ -113,7 +143,7 @@ struct WorkbenchDetailView: View {
                     Divider()
 
                     // Specifications
-                    SpecificationsSection(product: product, selectedSize: selectedSize, selectedGauge: selectedGauge)
+                    SpecificationsSection(product: activeProduct, selectedSize: selectedSize, selectedGauge: selectedGauge)
 
                     // Contact
                     Button(action: {}) {
@@ -129,13 +159,91 @@ struct WorkbenchDetailView: View {
                 .padding(.horizontal)
             }
         }
-        .navigationTitle(product.topType.shortName)
+        .navigationTitle(activeProduct.topType.gridName)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            selectedSize = product.sizes.first
-            selectedGauge = product.gaugeOptions.first
-            selectedLaminateColor = product.laminateColors.first
-            selectedPaintColor = product.paintColors.first
+            selectedSize = activeProduct.sizes.first
+            selectedGauge = activeProduct.gaugeOptions.first
+            selectedLaminateColor = activeProduct.laminateColors.first
+            selectedPaintColor = activeProduct.paintColors.first
+        }
+    }
+}
+
+// MARK: - Edge Style Selector (Formica)
+
+struct EdgeStyleSelectorSection: View {
+    @Binding var selectedEdgeStyle: FormicaEdgeStyle
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Edge Style")
+                .font(.headline)
+
+            HStack(spacing: 10) {
+                ForEach(FormicaEdgeStyle.allCases) { style in
+                    Button(action: { selectedEdgeStyle = style }) {
+                        Text(style.rawValue)
+                            .font(.subheadline)
+                            .fontWeight(selectedEdgeStyle == style ? .semibold : .regular)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(selectedEdgeStyle == style ? Color.blue : Color(.systemGray6))
+                            .foregroundStyle(selectedEdgeStyle == style ? .white : .primary)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Butcher Block Selector
+
+struct ButcherBlockSelectorSection: View {
+    @Binding var selectedThickness: ButcherBlockThickness
+    @Binding var selectedFinish: ButcherBlockFinish
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Thickness")
+                .font(.headline)
+
+            HStack(spacing: 10) {
+                ForEach(ButcherBlockThickness.allCases) { thickness in
+                    Button(action: { selectedThickness = thickness }) {
+                        Text(thickness.rawValue)
+                            .font(.subheadline)
+                            .fontWeight(selectedThickness == thickness ? .semibold : .regular)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(selectedThickness == thickness ? Color.blue : Color(.systemGray6))
+                            .foregroundStyle(selectedThickness == thickness ? .white : .primary)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+
+            Text("Finish")
+                .font(.headline)
+
+            HStack(spacing: 10) {
+                ForEach(ButcherBlockFinish.allCases) { finish in
+                    Button(action: { selectedFinish = finish }) {
+                        Text(finish.rawValue)
+                            .font(.subheadline)
+                            .fontWeight(selectedFinish == finish ? .semibold : .regular)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(selectedFinish == finish ? Color.blue : Color(.systemGray6))
+                            .foregroundStyle(selectedFinish == finish ? .white : .primary)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
         }
     }
 }
