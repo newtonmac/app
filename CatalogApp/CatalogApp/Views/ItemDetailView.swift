@@ -10,6 +10,7 @@ struct WorkbenchDetailView: View {
     @State private var selectedEdgeStyle: FormicaEdgeStyle = .square
     @State private var selectedBlockThickness: ButcherBlockThickness = .one
     @State private var selectedBlockFinish: ButcherBlockFinish = .oiled
+    @State private var selectedBlockEdge: ButcherBlockEdgeStyle = .standard
     @State private var selectedResinColor: ResinColor = .black
     @State private var selectedResinThickness: ResinThickness = .one
     @State private var selectedResinEdge: ResinEdgeStyle = .square
@@ -17,6 +18,9 @@ struct WorkbenchDetailView: View {
     /// Suffix appended to part number (e.g. "-RFE" for resin round front edge)
     private var partNumberSuffix: String {
         if product.topType.isResin && selectedResinEdge == .round {
+            return " - RFE"
+        }
+        if product.topType.isButcherBlock && selectedBlockEdge == .roundFront {
             return " - RFE"
         }
         return ""
@@ -109,7 +113,8 @@ struct WorkbenchDetailView: View {
                     if product.topType.isButcherBlock {
                         ButcherBlockSelectorSection(
                             selectedThickness: $selectedBlockThickness,
-                            selectedFinish: $selectedBlockFinish
+                            selectedFinish: $selectedBlockFinish,
+                            selectedEdge: $selectedBlockEdge
                         )
 
                         Divider()
@@ -228,6 +233,7 @@ struct EdgeStyleSelectorSection: View {
 struct ButcherBlockSelectorSection: View {
     @Binding var selectedThickness: ButcherBlockThickness
     @Binding var selectedFinish: ButcherBlockFinish
+    @Binding var selectedEdge: ButcherBlockEdgeStyle
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -263,6 +269,25 @@ struct ButcherBlockSelectorSection: View {
                             .padding(.vertical, 10)
                             .background(selectedFinish == finish ? Color.blue : Color(.systemGray6))
                             .foregroundStyle(selectedFinish == finish ? .white : .primary)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+
+            Text("Edge Style")
+                .font(.headline)
+
+            HStack(spacing: 10) {
+                ForEach(ButcherBlockEdgeStyle.allCases) { edge in
+                    Button(action: { selectedEdge = edge }) {
+                        Text(edge.rawValue)
+                            .font(.subheadline)
+                            .fontWeight(selectedEdge == edge ? .semibold : .regular)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(selectedEdge == edge ? Color.blue : Color(.systemGray6))
+                            .foregroundStyle(selectedEdge == edge ? .white : .primary)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
                     .buttonStyle(.plain)

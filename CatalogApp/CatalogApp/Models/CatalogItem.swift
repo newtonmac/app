@@ -314,6 +314,13 @@ enum ButcherBlockFinish: String, CaseIterable, Identifiable {
     }
 }
 
+enum ButcherBlockEdgeStyle: String, CaseIterable, Identifiable {
+    case standard = "Standard"
+    case roundFront = "Round Front"
+
+    var id: String { rawValue }
+}
+
 // MARK: - Resin Options
 
 enum ResinColor: String, CaseIterable, Identifiable {
