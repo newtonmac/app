@@ -10,11 +10,6 @@ struct ProductGridView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("\(products.count) Top Options")
-                .font(.headline)
-                .foregroundStyle(.secondary)
-                .padding(.horizontal)
-
             if products.isEmpty {
                 ContentUnavailableView(
                     "No Workbenches Found",
