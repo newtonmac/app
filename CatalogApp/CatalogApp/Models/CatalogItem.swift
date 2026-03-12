@@ -21,9 +21,9 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
 
     var shortName: String {
         switch self {
-        case .formicaRoundEdge: return "Formica (Round)"
-        case .formicaTMoldEdge: return "Formica (T-Mold)"
-        case .formicaSquareEdge: return "Formica (Square)"
+        case .formicaRoundEdge: return "Formica Round"
+        case .formicaTMoldEdge: return "Formica T-Mold"
+        case .formicaSquareEdge: return "Formica Square"
         case .butcherBlock1Oiled: return "Butcher Block 1\" Oiled"
         case .butcherBlock1Lacquered: return "Butcher Block 1\" Lacquered"
         case .butcherBlock175Oiled: return "Butcher Block 1-3/4\" Oiled"
