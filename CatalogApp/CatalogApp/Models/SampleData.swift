@@ -347,7 +347,7 @@ struct KennedyData {
     static let resinBlack1 = WorkbenchProduct(
         series: "Kennedy",
         topType: .resinBlack1,
-        modelPrefix: "KRB1",
+        modelPrefix: "KY",
         sizes: standardSizes,
         paintColors: allPaintColors,
         coreThickness: "1\" Resin"
@@ -357,7 +357,7 @@ struct KennedyData {
     static let resinBlack075 = WorkbenchProduct(
         series: "Kennedy",
         topType: .resinBlack075,
-        modelPrefix: "KRB075",
+        modelPrefix: "KZ",
         sizes: standardSizes,
         paintColors: allPaintColors,
         coreThickness: "3/4\" Resin"
@@ -367,7 +367,7 @@ struct KennedyData {
     static let resinWhite1 = WorkbenchProduct(
         series: "Kennedy",
         topType: .resinWhite1,
-        modelPrefix: "KRW1",
+        modelPrefix: "KYW",
         sizes: standardSizes,
         paintColors: allPaintColors,
         coreThickness: "1\" Resin"
@@ -377,7 +377,7 @@ struct KennedyData {
     static let resinWhite075 = WorkbenchProduct(
         series: "Kennedy",
         topType: .resinWhite075,
-        modelPrefix: "KRW075",
+        modelPrefix: "KZW",
         sizes: standardSizes,
         paintColors: allPaintColors,
         coreThickness: "3/4\" Resin"

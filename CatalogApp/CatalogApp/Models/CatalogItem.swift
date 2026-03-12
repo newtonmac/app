@@ -98,10 +98,10 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .stainlessSteel: return "KN"
         case .paintedSteel: return "KM"
         case .disposableParticleboard: return "KPB"
-        case .resinBlack1: return "KRB1"
-        case .resinBlack075: return "KRB075"
-        case .resinWhite1: return "KRW1"
-        case .resinWhite075: return "KRW075"
+        case .resinBlack1: return "KY"
+        case .resinBlack075: return "KZ"
+        case .resinWhite1: return "KYW"
+        case .resinWhite075: return "KZW"
         }
     }
 
