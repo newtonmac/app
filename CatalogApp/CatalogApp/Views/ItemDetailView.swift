@@ -14,6 +14,14 @@ struct WorkbenchDetailView: View {
     @State private var selectedResinThickness: ResinThickness = .one
     @State private var selectedResinEdge: ResinEdgeStyle = .square
 
+    /// Suffix appended to part number (e.g. "-RFE" for resin round front edge)
+    private var partNumberSuffix: String {
+        if product.topType.isResin && selectedResinEdge == .round {
+            return " - RFE"
+        }
+        return ""
+    }
+
     /// Returns the correct product variant based on user selections.
     private var activeProduct: WorkbenchProduct {
         if product.topType.isFormica {
@@ -63,7 +71,7 @@ struct WorkbenchDetailView: View {
                         HStack(spacing: 6) {
                             Image(systemName: "number")
                                 .foregroundStyle(.blue)
-                            Text("Part #: \(selected.partNumber(modelPrefix: activeProduct.modelPrefix, gaugeSuffix: selectedGauge?.suffix))")
+                            Text("Part #: \(selected.partNumber(modelPrefix: activeProduct.modelPrefix, gaugeSuffix: selectedGauge?.suffix))\(partNumberSuffix)")
                                 .fontWeight(.semibold)
                             Text("(\(selected.displayName))")
                                 .foregroundStyle(.secondary)
@@ -159,7 +167,7 @@ struct WorkbenchDetailView: View {
                     Divider()
 
                     // Specifications
-                    SpecificationsSection(product: activeProduct, selectedSize: selectedSize, selectedGauge: selectedGauge)
+                    SpecificationsSection(product: activeProduct, selectedSize: selectedSize, selectedGauge: selectedGauge, partNumberSuffix: partNumberSuffix)
 
                     // Contact
                     Button(action: {}) {
@@ -533,6 +541,7 @@ struct SpecificationsSection: View {
     let product: WorkbenchProduct
     let selectedSize: WorkbenchSize?
     var selectedGauge: GaugeOption? = nil
+    var partNumberSuffix: String = ""
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -543,7 +552,7 @@ struct SpecificationsSection: View {
             SpecRow(label: "Top", value: product.topType.topMaterial)
             SpecRow(label: "Edge", value: product.topType.edgeType)
             if let selected = selectedSize {
-                SpecRow(label: "Part Number", value: selected.partNumber(modelPrefix: product.modelPrefix, gaugeSuffix: selectedGauge?.suffix))
+                SpecRow(label: "Part Number", value: selected.partNumber(modelPrefix: product.modelPrefix, gaugeSuffix: selectedGauge?.suffix) + partNumberSuffix)
                 SpecRow(label: "Size", value: selected.displayName)
             }
             if let gauge = selectedGauge {
