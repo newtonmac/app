@@ -146,12 +146,12 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .butcherBlock175Oiled: return "butcher_block_175_oiled"
         case .butcherBlock175Lacquered: return "butcher_block_175_lacquered"
         case .esdStaticControl: return "esd_laminate"
-        case .cleanroomLaminate: return "cleanroom_laminate"
+        case .cleanroomLaminate: return "painted_steel"
         case .cleanroomESD: return "cleanroom_esd"
         case .stainlessSteel: return "stainless_steel"
-        case .paintedSteel: return "painted_steel"
+        case .paintedSteel: return "cleanroom_laminate"
         case .disposableParticleboard: return "particleboard"
-        case .resinBlack1, .resinBlack075: return "cleanroom_laminate"
+        case .resinBlack1, .resinBlack075: return "painted_steel"
         case .resinWhite1, .resinWhite075: return "resin_white"
         }
     }
