@@ -163,13 +163,9 @@ struct SizeSelectorSection: View {
                     FlowLayout(spacing: 8) {
                         ForEach(sizes(forDepth: depth)) { size in
                             Button(action: { selectedSize = size }) {
-                                VStack(spacing: 2) {
-                                    Text(size.partNumber(modelPrefix: modelPrefix, gaugeSuffix: gaugeSuffix))
-                                        .font(.caption2)
-                                        .fontWeight(.semibold)
-                                    Text("\(size.depth)\" x \(size.length)\"")
-                                        .font(.caption2)
-                                }
+                                Text("\(size.depth)\" x \(size.length)\"")
+                                    .font(.caption2)
+                                    .fontWeight(.semibold)
                                 .padding(.horizontal, 10)
                                 .padding(.vertical, 6)
                                 .background(selectedSize == size ? Color.blue : Color(.systemGray6))
