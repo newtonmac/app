@@ -112,7 +112,10 @@ struct RooseveltData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "1.125\" Solid Wood Core",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -126,7 +129,10 @@ struct RooseveltData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "1.125\" Solid Wood Core",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -140,7 +146,10 @@ struct RooseveltData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "1.125\" Solid Wood Core",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -153,7 +162,10 @@ struct RooseveltData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "1\" Solid Butcher Block",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -166,7 +178,10 @@ struct RooseveltData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "1\" Solid Butcher Block",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -179,7 +194,10 @@ struct RooseveltData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "1-3/4\" Solid Butcher Block",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -192,7 +210,10 @@ struct RooseveltData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "1-3/4\" Solid Butcher Block",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -205,7 +226,10 @@ struct RooseveltData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "1\" Resin",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -218,7 +242,10 @@ struct RooseveltData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "3/4\" Resin",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -231,7 +258,10 @@ struct RooseveltData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "1\" Resin",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -244,7 +274,10 @@ struct RooseveltData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "3/4\" Resin",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -258,7 +291,10 @@ struct RooseveltData {
         paintColors: esdPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "1.125\" Solid Wood Core",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -272,7 +308,10 @@ struct RooseveltData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "1.125\" Solid Wood Core",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -286,7 +325,10 @@ struct RooseveltData {
         paintColors: esdPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "1.125\" Solid Wood Core",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -299,7 +341,10 @@ struct RooseveltData {
         paintColors: stainlessPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "18 Gauge Stainless Steel",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -315,7 +360,10 @@ struct RooseveltData {
         ],
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "12 Gauge Painted Steel",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 
@@ -328,7 +376,10 @@ struct RooseveltData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 1,500 lbs",
         coreThickness: "1-1/8\" Particleboard",
-        apronSize: "1-1/2\" x 1\" Tube",
+        apronSize: "Channel Top Support",
+        steelSpec: "14 & 16 Gauge Cold Rolled",
+        legSpec: "Formed Steel, Adjustable 30\"-36\"",
+        assemblySpec: "Predrilled Holes & Preassembled Legs",
         shipsIn: "1-5 Business Days"
     )
 

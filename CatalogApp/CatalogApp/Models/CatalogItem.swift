@@ -236,6 +236,9 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
     let loadCapacity: String
     let coreThickness: String
     let apronSize: String
+    let steelSpec: String
+    let legSpec: String
+    let assemblySpec: String
     let shipsIn: String
 
     init(
@@ -250,6 +253,9 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
         loadCapacity: String = "Tested to 6,600 lbs",
         coreThickness: String = "1.125\" Solid Wood Core",
         apronSize: String = "2\" x 1\" Tube",
+        steelSpec: String = "16 Gauge Cold Rolled",
+        legSpec: String = "2\" x 2\" Tube w/ 2\" x 1\" Spreaders",
+        assemblySpec: String = "1 Bolt Per Leg",
         shipsIn: String = "1-5 Business Days"
     ) {
         self.id = id
@@ -263,6 +269,9 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
         self.loadCapacity = loadCapacity
         self.coreThickness = coreThickness
         self.apronSize = apronSize
+        self.steelSpec = steelSpec
+        self.legSpec = legSpec
+        self.assemblySpec = assemblySpec
         self.shipsIn = shipsIn
     }
 
