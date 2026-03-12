@@ -62,7 +62,7 @@ struct SeriesCard: View {
                     .resizable()
                     .scaledToFill()
                     .frame(maxWidth: .infinity)
-                    .frame(height: 98)
+                    .frame(height: 103)
                     .clipped()
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             } else {
