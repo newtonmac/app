@@ -56,7 +56,7 @@ struct SeriesCard: View {
     let series: WorkbenchSeries
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 4) {
             if UIImage(named: series.imageName) != nil {
                 Image(series.imageName)
                     .resizable()
