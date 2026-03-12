@@ -60,7 +60,7 @@ struct ProductCard: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             }
 
-            Text("\(product.series) \(product.topType.shortName)")
+            Text(product.topType.gridName)
                 .font(.subheadline)
                 .fontWeight(.medium)
                 .lineLimit(2)

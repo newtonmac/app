@@ -19,6 +19,36 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
 
     var id: String { rawValue }
 
+    var isFormica: Bool {
+        switch self {
+        case .formicaRoundEdge, .formicaTMoldEdge, .formicaSquareEdge: return true
+        default: return false
+        }
+    }
+
+    var isButcherBlock: Bool {
+        switch self {
+        case .butcherBlock1Oiled, .butcherBlock1Lacquered,
+             .butcherBlock175Oiled, .butcherBlock175Lacquered: return true
+        default: return false
+        }
+    }
+
+    /// Name shown on grid cards (no "Kennedy" prefix, variants consolidated)
+    var gridName: String {
+        switch self {
+        case .formicaRoundEdge, .formicaTMoldEdge, .formicaSquareEdge: return "Formica"
+        case .butcherBlock1Oiled, .butcherBlock1Lacquered,
+             .butcherBlock175Oiled, .butcherBlock175Lacquered: return "Butcher Block"
+        case .esdStaticControl: return "ESD / Static Control"
+        case .cleanroomLaminate: return "Cleanroom"
+        case .cleanroomESD: return "Cleanroom ESD"
+        case .stainlessSteel: return "Stainless Steel"
+        case .paintedSteel: return "Painted Steel"
+        case .disposableParticleboard: return "Particleboard"
+        }
+    }
+
     var shortName: String {
         switch self {
         case .formicaRoundEdge: return "Formica Round"
@@ -211,5 +241,48 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
 
     var displayName: String {
         "\(series) - \(topType.shortName)"
+    }
+}
+
+// MARK: - Formica Edge Style
+
+enum FormicaEdgeStyle: String, CaseIterable, Identifiable {
+    case square = "Square"
+    case round = "Round"
+    case tMold = "T-Mold"
+
+    var id: String { rawValue }
+
+    var topType: TopType {
+        switch self {
+        case .square: return .formicaSquareEdge
+        case .round: return .formicaRoundEdge
+        case .tMold: return .formicaTMoldEdge
+        }
+    }
+}
+
+// MARK: - Butcher Block Options
+
+enum ButcherBlockThickness: String, CaseIterable, Identifiable {
+    case one = "1\""
+    case oneThreeQuarter = "1-3/4\""
+
+    var id: String { rawValue }
+}
+
+enum ButcherBlockFinish: String, CaseIterable, Identifiable {
+    case oiled = "Oiled"
+    case lacquered = "Lacquered"
+
+    var id: String { rawValue }
+
+    func topType(thickness: ButcherBlockThickness) -> TopType {
+        switch (thickness, self) {
+        case (.one, .oiled): return .butcherBlock1Oiled
+        case (.one, .lacquered): return .butcherBlock1Lacquered
+        case (.oneThreeQuarter, .oiled): return .butcherBlock175Oiled
+        case (.oneThreeQuarter, .lacquered): return .butcherBlock175Lacquered
+        }
     }
 }

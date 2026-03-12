@@ -24,8 +24,9 @@ class CatalogViewModel {
         return result
     }
 
+    /// Only the top types that appear in allProducts (consolidated variants)
     var topTypes: [TopType] {
-        TopType.allCases
+        kennedyProducts.map(\.topType)
     }
 
     func selectTopType(_ topType: TopType?) {
