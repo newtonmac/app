@@ -148,13 +148,15 @@ struct SizeSelectorSection: View {
     var gaugeSuffix: String? = nil
     @Binding var selectedSize: WorkbenchSize?
 
-    // Group by depth
+    @State private var selectedDepth: Int?
+
     private var depths: [Int] {
         Array(Set(sizes.map(\.depth))).sorted()
     }
 
-    private func sizes(forDepth depth: Int) -> [WorkbenchSize] {
-        sizes.filter { $0.depth == depth }.sorted { $0.length < $1.length }
+    private var lengths: [Int] {
+        guard let depth = selectedDepth else { return [] }
+        return sizes.filter { $0.depth == depth }.map(\.length).sorted()
     }
 
     var body: some View {
@@ -162,30 +164,66 @@ struct SizeSelectorSection: View {
             Text("Select Size")
                 .font(.headline)
 
-            ForEach(depths, id: \.self) { depth in
+            // Step 1: Depth
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Depth")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+
+                FlowLayout(spacing: 8) {
+                    ForEach(depths, id: \.self) { depth in
+                        Button(action: {
+                            selectedDepth = depth
+                            // Auto-select first length for this depth
+                            if let first = sizes.first(where: { $0.depth == depth }) {
+                                selectedSize = first
+                            }
+                        }) {
+                            Text("\(depth)\"")
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 8)
+                                .background(selectedDepth == depth ? Color.blue : Color(.systemGray6))
+                                .foregroundStyle(selectedDepth == depth ? .white : .primary)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+            }
+
+            // Step 2: Length (only shown after depth is selected)
+            if selectedDepth != nil {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("\(depth)\" Deep")
+                    Text("Length")
                         .font(.subheadline)
-                        .fontWeight(.medium)
                         .foregroundStyle(.secondary)
 
                     FlowLayout(spacing: 8) {
-                        ForEach(sizes(forDepth: depth)) { size in
-                            Button(action: { selectedSize = size }) {
-                                Text("\(size.depth)\" x \(size.length)\"")
-                                    .font(.caption2)
+                        ForEach(lengths, id: \.self) { length in
+                            Button(action: {
+                                if let depth = selectedDepth {
+                                    selectedSize = sizes.first { $0.depth == depth && $0.length == length }
+                                }
+                            }) {
+                                Text("\(length)\"")
+                                    .font(.caption)
                                     .fontWeight(.semibold)
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 6)
-                                .background(selectedSize == size ? Color.blue : Color(.systemGray6))
-                                .foregroundStyle(selectedSize == size ? .white : .primary)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                    .padding(.horizontal, 14)
+                                    .padding(.vertical, 8)
+                                    .background(selectedSize?.length == length ? Color.blue : Color(.systemGray6))
+                                    .foregroundStyle(selectedSize?.length == length ? .white : .primary)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
                             }
                             .buttonStyle(.plain)
                         }
                     }
                 }
             }
+        }
+        .onAppear {
+            selectedDepth = sizes.first?.depth
         }
     }
 }
