@@ -55,6 +55,34 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         }
     }
 
+    var topMaterial: String {
+        switch self {
+        case .formicaRoundEdge, .formicaTMoldEdge, .formicaSquareEdge: return "Formica Laminate"
+        case .butcherBlock1Oiled, .butcherBlock1Lacquered: return "Solid Butcher Block 1\""
+        case .butcherBlock175Oiled, .butcherBlock175Lacquered: return "Solid Butcher Block 1-3/4\""
+        case .esdStaticControl: return "ESD Static Control Laminate"
+        case .cleanroomLaminate: return "Cleanroom Laminate"
+        case .cleanroomESD: return "Cleanroom ESD Laminate"
+        case .stainlessSteel: return "Stainless Steel"
+        case .paintedSteel: return "Painted Steel"
+        case .disposableParticleboard: return "Particleboard"
+        }
+    }
+
+    var edgeType: String {
+        switch self {
+        case .formicaRoundEdge: return "Radiused"
+        case .formicaTMoldEdge: return "T-Mold Bumper"
+        case .formicaSquareEdge: return "Square Cut"
+        case .butcherBlock1Oiled, .butcherBlock175Oiled: return "Radiused (Oiled)"
+        case .butcherBlock1Lacquered, .butcherBlock175Lacquered: return "Square Cut (Lacquered)"
+        case .esdStaticControl, .cleanroomLaminate, .cleanroomESD: return "Square Cut"
+        case .stainlessSteel: return "Square Cut"
+        case .paintedSteel: return "Square Cut"
+        case .disposableParticleboard: return "Square Cut"
+        }
+    }
+
     var imageName: String {
         switch self {
         case .formicaRoundEdge: return "formica_round"

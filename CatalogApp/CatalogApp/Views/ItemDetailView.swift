@@ -346,7 +346,9 @@ struct SpecificationsSection: View {
             Text("Specifications")
                 .font(.headline)
 
-            SpecRow(label: "Series", value: "\(product.series) \(product.topType.shortName)")
+            SpecRow(label: "Series", value: product.series)
+            SpecRow(label: "Top", value: product.topType.topMaterial)
+            SpecRow(label: "Edge", value: product.topType.edgeType)
             if let selected = selectedSize {
                 SpecRow(label: "Part Number", value: selected.partNumber(modelPrefix: product.modelPrefix, gaugeSuffix: selectedGauge?.suffix))
                 SpecRow(label: "Size", value: selected.displayName)
@@ -356,9 +358,10 @@ struct SpecificationsSection: View {
             }
             SpecRow(label: "Load Capacity", value: product.loadCapacity)
             SpecRow(label: "Core", value: product.coreThickness)
+            SpecRow(label: "Steel", value: "16 Gauge Cold Rolled")
             SpecRow(label: "Apron (Top Support)", value: product.apronSize)
             SpecRow(label: "Legs", value: "2\" x 2\" Tube w/ 2\" x 1\" Spreaders")
-            SpecRow(label: "Steel", value: "16 Gauge Cold Rolled")
+            SpecRow(label: "Levelling Glides", value: "Adjusting")
             SpecRow(label: "Available Sizes", value: "\(product.sizes.count) configurations")
         }
     }
