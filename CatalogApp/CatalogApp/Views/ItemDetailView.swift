@@ -358,6 +358,7 @@ struct SpecificationsSection: View {
             SpecRow(label: "Core", value: product.coreThickness)
             SpecRow(label: "Apron (Top Support)", value: product.apronSize)
             SpecRow(label: "Legs", value: "2\" x 2\" Tube w/ 2\" x 1\" Spreaders")
+            SpecRow(label: "Steel", value: "16 Gauge Cold Rolled")
             SpecRow(label: "Available Sizes", value: "\(product.sizes.count) configurations")
         }
     }
