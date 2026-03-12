@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "formica_square.jpg",
+      "filename" : "formica_square.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "formica_square.jpg",
+      "filename" : "formica_square.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "formica_square.jpg",
+      "filename" : "formica_square.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "cleanroom_laminate.jpg",
+      "filename" : "cleanroom_laminate.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "cleanroom_laminate.jpg",
+      "filename" : "cleanroom_laminate.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cleanroom_laminate.jpg",
+      "filename" : "cleanroom_laminate.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
