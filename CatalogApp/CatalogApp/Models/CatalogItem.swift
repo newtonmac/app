@@ -239,6 +239,7 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
     let steelSpec: String
     let legSpec: String
     let assemblySpec: String
+    let heightAdjustable: String?
     let shipsIn: String
 
     init(
@@ -256,6 +257,7 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
         steelSpec: String = "16 Gauge Cold Rolled",
         legSpec: String = "2\" x 2\" Tube w/ 2\" x 1\" Spreaders",
         assemblySpec: String = "1 Bolt Per Leg",
+        heightAdjustable: String? = nil,
         shipsIn: String = "1-5 Business Days"
     ) {
         self.id = id
@@ -272,6 +274,7 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
         self.steelSpec = steelSpec
         self.legSpec = legSpec
         self.assemblySpec = assemblySpec
+        self.heightAdjustable = heightAdjustable
         self.shipsIn = shipsIn
     }
 

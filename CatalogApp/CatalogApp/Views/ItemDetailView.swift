@@ -595,6 +595,9 @@ struct SpecificationsSection: View {
             SpecRow(label: "Legs", value: product.legSpec)
             SpecRow(label: "Includes", value: "Levelling Glides & Hardware")
             SpecRow(label: "Assembly", value: product.assemblySpec)
+            if let height = product.heightAdjustable {
+                SpecRow(label: "Height Adjustable", value: height)
+            }
             SpecRow(label: "Available Sizes", value: "\(product.sizes.count) configurations")
         }
     }

@@ -102,6 +102,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "1.125\" Solid Wood Core",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -116,6 +117,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "1.125\" Solid Wood Core",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -130,6 +132,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "1.125\" Solid Wood Core",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -143,6 +146,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "1\" Solid Butcher Block",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -156,6 +160,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "1\" Solid Butcher Block",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -169,6 +174,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "1-3/4\" Solid Butcher Block",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -182,6 +188,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "1-3/4\" Solid Butcher Block",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -195,6 +202,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "3/4\" Resin",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -208,6 +216,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "1\" Resin",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -221,6 +230,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "3/4\" Resin",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -234,6 +244,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "1\" Resin",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -248,6 +259,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "1.125\" Solid Wood Core",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -262,6 +274,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "1.125\" Solid Wood Core",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -276,6 +289,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "1.125\" Solid Wood Core",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -289,6 +303,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "18 Gauge Stainless Steel",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
@@ -302,6 +317,7 @@ struct ClevelandData {
         loadCapacity: "Tested to 2,000 lbs",
         coreThickness: "1\" Particleboard",
         apronSize: "2\" x 1\" Tube",
+        heightAdjustable: "6\"",
         shipsIn: "5-10 Business Days"
     )
 
