@@ -66,7 +66,7 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .stainlessSteel:
             return "Stainless steel top with square cut front edge. Ideal for labs and food preparation areas."
         case .paintedSteel:
-            return "12-gauge painted steel top with square cut front edge. Heavy-duty industrial surface."
+            return "Painted steel top with square cut front edge. Available in 12-gauge and 14-gauge. Heavy-duty industrial surface."
         case .disposableParticleboard:
             return "Heavy 45# particleboard, 1-1/8\" thick. Economical disposable top option."
         }
@@ -84,8 +84,11 @@ struct WorkbenchSize: Identifiable, Hashable, Codable {
         "\(depth)\"D x \(length)\"L"
     }
 
-    func partNumber(modelPrefix: String) -> String {
-        "\(modelPrefix)\(depth)\(length)"
+    func partNumber(modelPrefix: String, gaugeSuffix: String? = nil) -> String {
+        if let suffix = gaugeSuffix {
+            return "\(modelPrefix)\(depth)\(length)-\(suffix)"
+        }
+        return "\(modelPrefix)\(depth)\(length)"
     }
 }
 
@@ -95,6 +98,14 @@ struct ColorOption: Identifiable, Hashable, Codable {
     var id: String { name }
     let name: String
     let hexColor: String
+}
+
+// MARK: - Gauge Option
+
+struct GaugeOption: Identifiable, Hashable, Codable {
+    var id: String { suffix }
+    let label: String   // e.g. "12 Gauge"
+    let suffix: String  // e.g. "12" — appended to part number as -12
 }
 
 // MARK: - Workbench Product
@@ -107,6 +118,7 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
     let sizes: [WorkbenchSize]
     let laminateColors: [ColorOption]
     let paintColors: [ColorOption]
+    let gaugeOptions: [GaugeOption]
     let loadCapacity: String
     let coreThickness: String
     let apronSize: String
@@ -120,6 +132,7 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
         sizes: [WorkbenchSize],
         laminateColors: [ColorOption] = [],
         paintColors: [ColorOption] = [],
+        gaugeOptions: [GaugeOption] = [],
         loadCapacity: String = "Tested to 6,600 lbs",
         coreThickness: String = "1.2\" Solid Wood Core",
         apronSize: String = "2\" x 1\" Tube",
@@ -132,6 +145,7 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
         self.sizes = sizes
         self.laminateColors = laminateColors
         self.paintColors = paintColors
+        self.gaugeOptions = gaugeOptions
         self.loadCapacity = loadCapacity
         self.coreThickness = coreThickness
         self.apronSize = apronSize

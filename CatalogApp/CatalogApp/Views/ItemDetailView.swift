@@ -4,6 +4,7 @@ struct WorkbenchDetailView: View {
     let product: WorkbenchProduct
 
     @State private var selectedSize: WorkbenchSize?
+    @State private var selectedGauge: GaugeOption?
     @State private var selectedLaminateColor: ColorOption?
     @State private var selectedPaintColor: ColorOption?
 
@@ -41,7 +42,7 @@ struct WorkbenchDetailView: View {
                         HStack(spacing: 6) {
                             Image(systemName: "number")
                                 .foregroundStyle(.blue)
-                            Text("Part #: \(selected.partNumber(modelPrefix: product.modelPrefix))")
+                            Text("Part #: \(selected.partNumber(modelPrefix: product.modelPrefix, gaugeSuffix: selectedGauge?.suffix))")
                                 .fontWeight(.semibold)
                             Text("(\(selected.displayName))")
                                 .foregroundStyle(.secondary)
@@ -69,10 +70,21 @@ struct WorkbenchDetailView: View {
 
                     Divider()
 
+                    // Gauge Selector (if available)
+                    if !product.gaugeOptions.isEmpty {
+                        GaugeSelectorSection(
+                            gaugeOptions: product.gaugeOptions,
+                            selectedGauge: $selectedGauge
+                        )
+
+                        Divider()
+                    }
+
                     // Size Selector
                     SizeSelectorSection(
                         sizes: product.sizes,
                         modelPrefix: product.modelPrefix,
+                        gaugeSuffix: selectedGauge?.suffix,
                         selectedSize: $selectedSize
                     )
 
@@ -99,7 +111,7 @@ struct WorkbenchDetailView: View {
                     Divider()
 
                     // Specifications
-                    SpecificationsSection(product: product, selectedSize: selectedSize)
+                    SpecificationsSection(product: product, selectedSize: selectedSize, selectedGauge: selectedGauge)
 
                     // Contact / Quote button
                     Button(action: {}) {
@@ -129,6 +141,7 @@ struct WorkbenchDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             selectedSize = product.sizes.first
+            selectedGauge = product.gaugeOptions.first
             selectedLaminateColor = product.laminateColors.first
             selectedPaintColor = product.paintColors.first
         }
@@ -140,6 +153,7 @@ struct WorkbenchDetailView: View {
 struct SizeSelectorSection: View {
     let sizes: [WorkbenchSize]
     let modelPrefix: String
+    var gaugeSuffix: String? = nil
     @Binding var selectedSize: WorkbenchSize?
 
     // Group by depth
@@ -167,7 +181,7 @@ struct SizeSelectorSection: View {
                         ForEach(sizes(forDepth: depth)) { size in
                             Button(action: { selectedSize = size }) {
                                 VStack(spacing: 2) {
-                                    Text(size.partNumber(modelPrefix: modelPrefix))
+                                    Text(size.partNumber(modelPrefix: modelPrefix, gaugeSuffix: gaugeSuffix))
                                         .font(.caption2)
                                         .fontWeight(.semibold)
                                     Text("\(size.depth)\" x \(size.length)\"")
@@ -232,11 +246,42 @@ struct ColorSelectorSection: View {
     }
 }
 
+// MARK: - Gauge Selector
+
+struct GaugeSelectorSection: View {
+    let gaugeOptions: [GaugeOption]
+    @Binding var selectedGauge: GaugeOption?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Select Gauge")
+                .font(.headline)
+
+            HStack(spacing: 10) {
+                ForEach(gaugeOptions) { gauge in
+                    Button(action: { selectedGauge = gauge }) {
+                        Text(gauge.label)
+                            .font(.subheadline)
+                            .fontWeight(selectedGauge == gauge ? .semibold : .regular)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(selectedGauge == gauge ? Color.blue : Color(.systemGray6))
+                            .foregroundStyle(selectedGauge == gauge ? .white : .primary)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+        }
+    }
+}
+
 // MARK: - Specifications
 
 struct SpecificationsSection: View {
     let product: WorkbenchProduct
     let selectedSize: WorkbenchSize?
+    var selectedGauge: GaugeOption? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -246,8 +291,11 @@ struct SpecificationsSection: View {
             SpecRow(label: "Series", value: product.series)
             SpecRow(label: "Model Prefix", value: product.modelPrefix)
             if let selected = selectedSize {
-                SpecRow(label: "Part Number", value: selected.partNumber(modelPrefix: product.modelPrefix))
+                SpecRow(label: "Part Number", value: selected.partNumber(modelPrefix: product.modelPrefix, gaugeSuffix: selectedGauge?.suffix))
                 SpecRow(label: "Size", value: selected.displayName)
+            }
+            if let gauge = selectedGauge {
+                SpecRow(label: "Gauge", value: gauge.label)
             }
             SpecRow(label: "Load Capacity", value: product.loadCapacity)
             SpecRow(label: "Core", value: product.coreThickness)

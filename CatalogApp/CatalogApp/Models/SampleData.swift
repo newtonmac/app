@@ -201,7 +201,11 @@ struct KennedyData {
         topType: .paintedSteel,
         modelPrefix: "KM",
         sizes: paintedSteelSizes,
-        paintColors: standardPaintColors
+        paintColors: standardPaintColors,
+        gaugeOptions: [
+            GaugeOption(label: "12 Gauge", suffix: "12"),
+            GaugeOption(label: "14 Gauge", suffix: "14"),
+        ]
     )
 
     // MARK: Disposable Particleboard (Model KPB)
