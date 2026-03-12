@@ -160,8 +160,10 @@ struct KennedyData {
         formicaRoundEdge,
         formicaTMoldEdge,
         formicaSquareEdge,
-        butcherBlockOiled,
-        butcherBlockLacquered,
+        butcherBlock1Oiled,
+        butcherBlock1Lacquered,
+        butcherBlock175Oiled,
+        butcherBlock175Lacquered,
         esdStaticControl,
         cleanroomLaminate,
         cleanroomESD,
@@ -209,22 +211,44 @@ struct KennedyData {
         paintColors: allPaintColors
     )
 
-    // MARK: Solid Butcher Block - Oiled (Model KWR)
-    static let butcherBlockOiled = WorkbenchProduct(
+    // MARK: Solid Butcher Block 1" - Oiled (Model KV)
+    static let butcherBlock1Oiled = WorkbenchProduct(
         series: "Kennedy",
-        topType: .butcherBlockOiled,
-        modelPrefix: "KWR",
+        topType: .butcherBlock1Oiled,
+        modelPrefix: "KV",
         sizes: standardSizes,
-        paintColors: allPaintColors
+        paintColors: allPaintColors,
+        coreThickness: "1\" Solid Butcher Block"
     )
 
-    // MARK: Solid Butcher Block - Lacquered (Model KWR-L)
-    static let butcherBlockLacquered = WorkbenchProduct(
+    // MARK: Solid Butcher Block 1" - Lacquered (Model KVL)
+    static let butcherBlock1Lacquered = WorkbenchProduct(
         series: "Kennedy",
-        topType: .butcherBlockLacquered,
-        modelPrefix: "KWR-L",
+        topType: .butcherBlock1Lacquered,
+        modelPrefix: "KVL",
         sizes: standardSizes,
-        paintColors: allPaintColors
+        paintColors: allPaintColors,
+        coreThickness: "1\" Solid Butcher Block"
+    )
+
+    // MARK: Solid Butcher Block 1-3/4" - Oiled (Model KW)
+    static let butcherBlock175Oiled = WorkbenchProduct(
+        series: "Kennedy",
+        topType: .butcherBlock175Oiled,
+        modelPrefix: "KW",
+        sizes: standardSizes,
+        paintColors: allPaintColors,
+        coreThickness: "1-3/4\" Solid Butcher Block"
+    )
+
+    // MARK: Solid Butcher Block 1-3/4" - Lacquered (Model KWL)
+    static let butcherBlock175Lacquered = WorkbenchProduct(
+        series: "Kennedy",
+        topType: .butcherBlock175Lacquered,
+        modelPrefix: "KWL",
+        sizes: standardSizes,
+        paintColors: allPaintColors,
+        coreThickness: "1-3/4\" Solid Butcher Block"
     )
 
     // MARK: ESD Static Control (Model KD)

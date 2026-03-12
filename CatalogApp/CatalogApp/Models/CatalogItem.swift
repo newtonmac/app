@@ -6,8 +6,10 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
     case formicaRoundEdge = "Formica Laminate - Round Front Edge"
     case formicaTMoldEdge = "Formica Laminate - T-Mold Bumper Edge"
     case formicaSquareEdge = "Formica Laminate - Square Cut Edge"
-    case butcherBlockOiled = "Solid Butcher Block - Oiled"
-    case butcherBlockLacquered = "Solid Butcher Block - Lacquered"
+    case butcherBlock1Oiled = "Solid Butcher Block 1\" - Oiled"
+    case butcherBlock1Lacquered = "Solid Butcher Block 1\" - Lacquered"
+    case butcherBlock175Oiled = "Solid Butcher Block 1-3/4\" - Oiled"
+    case butcherBlock175Lacquered = "Solid Butcher Block 1-3/4\" - Lacquered"
     case esdStaticControl = "Static Control ESD Laminate"
     case cleanroomLaminate = "Cleanroom Laminate"
     case cleanroomESD = "Cleanroom ESD Laminate"
@@ -22,8 +24,10 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .formicaRoundEdge: return "Formica (Round)"
         case .formicaTMoldEdge: return "Formica (T-Mold)"
         case .formicaSquareEdge: return "Formica (Square)"
-        case .butcherBlockOiled: return "Butcher Block (Oil)"
-        case .butcherBlockLacquered: return "Butcher Block (Lac.)"
+        case .butcherBlock1Oiled: return "Butcher Block 1\" (Oil)"
+        case .butcherBlock1Lacquered: return "Butcher Block 1\" (Lac.)"
+        case .butcherBlock175Oiled: return "Butcher Block 1-3/4\" (Oil)"
+        case .butcherBlock175Lacquered: return "Butcher Block 1-3/4\" (Lac.)"
         case .esdStaticControl: return "ESD / Static Control"
         case .cleanroomLaminate: return "Cleanroom"
         case .cleanroomESD: return "Cleanroom ESD"
@@ -38,8 +42,10 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .formicaRoundEdge: return "KF"
         case .formicaTMoldEdge: return "KT"
         case .formicaSquareEdge: return "KE"
-        case .butcherBlockOiled: return "KWR"
-        case .butcherBlockLacquered: return "KWR-L"
+        case .butcherBlock1Oiled: return "KV"
+        case .butcherBlock1Lacquered: return "KVL"
+        case .butcherBlock175Oiled: return "KW"
+        case .butcherBlock175Lacquered: return "KWL"
         case .esdStaticControl: return "KD"
         case .cleanroomLaminate: return "KCR"
         case .cleanroomESD: return "KDCR"
@@ -53,9 +59,13 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         switch self {
         case .formicaRoundEdge, .formicaTMoldEdge, .formicaSquareEdge:
             return "Formica laminate surface on 1.2\" solid wood core. Durable and easy to clean."
-        case .butcherBlockOiled:
+        case .butcherBlock1Oiled:
+            return "100% solid butcher block hardwood, 1\" thick, oiled finish with round front edge."
+        case .butcherBlock1Lacquered:
+            return "100% solid butcher block hardwood, 1\" thick, lacquered finish."
+        case .butcherBlock175Oiled:
             return "100% solid butcher block hardwood, 1-3/4\" thick, oiled finish with round front edge."
-        case .butcherBlockLacquered:
+        case .butcherBlock175Lacquered:
             return "100% solid butcher block hardwood, 1-3/4\" thick, lacquered finish."
         case .esdStaticControl:
             return "LisStat™ ESD static control laminate with wrist-strap jack plugs and grounding wire. Aluminum sheet undersides for maximum conductivity."
