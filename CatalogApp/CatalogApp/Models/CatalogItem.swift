@@ -103,6 +103,10 @@ struct PriceEntry: Identifiable, Hashable, Codable {
     var formattedPrice: String {
         String(format: "$%.2f", price)
     }
+
+    func partNumber(modelPrefix: String) -> String {
+        "\(modelPrefix)\(size.depth)\(size.length)"
+    }
 }
 
 // MARK: - Workbench Product

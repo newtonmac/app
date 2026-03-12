@@ -54,6 +54,23 @@ struct WorkbenchDetailView: View {
                         }
                     }
 
+                    // Part Number display
+                    if let selected = selectedSize {
+                        HStack(spacing: 6) {
+                            Image(systemName: "number")
+                                .foregroundStyle(.blue)
+                            Text("Part #: \(selected.partNumber(modelPrefix: product.modelPrefix))")
+                                .fontWeight(.semibold)
+                            Text("(\(selected.size.displayName))")
+                                .foregroundStyle(.secondary)
+                        }
+                        .font(.subheadline)
+                        .padding(10)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.blue.opacity(0.08))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+
                     // Specs badges
                     HStack(spacing: 12) {
                         SpecBadge(icon: "scalemass", text: product.loadCapacity)
@@ -73,6 +90,7 @@ struct WorkbenchDetailView: View {
                     // Size Selector
                     SizeSelectorSection(
                         priceEntries: product.priceEntries,
+                        modelPrefix: product.modelPrefix,
                         selectedSize: $selectedSize
                     )
 
@@ -99,7 +117,7 @@ struct WorkbenchDetailView: View {
                     Divider()
 
                     // Specifications
-                    SpecificationsSection(product: product)
+                    SpecificationsSection(product: product, selectedSize: selectedSize)
 
                     // Contact / Quote button
                     Button(action: {}) {
@@ -139,6 +157,7 @@ struct WorkbenchDetailView: View {
 
 struct SizeSelectorSection: View {
     let priceEntries: [PriceEntry]
+    let modelPrefix: String
     @Binding var selectedSize: PriceEntry?
 
     // Group by depth
@@ -166,11 +185,14 @@ struct SizeSelectorSection: View {
                         ForEach(entries(forDepth: depth)) { entry in
                             Button(action: { selectedSize = entry }) {
                                 VStack(spacing: 2) {
-                                    Text("\(entry.size.length)\"L")
-                                        .font(.caption)
-                                        .fontWeight(.medium)
+                                    Text(entry.partNumber(modelPrefix: modelPrefix))
+                                        .font(.caption2)
+                                        .fontWeight(.semibold)
+                                    Text("\(entry.size.depth)\" x \(entry.size.length)\"")
+                                        .font(.caption2)
                                     Text(entry.formattedPrice)
                                         .font(.caption2)
+                                        .fontWeight(.medium)
                                 }
                                 .padding(.horizontal, 10)
                                 .padding(.vertical, 6)
@@ -236,6 +258,7 @@ struct ColorSelectorSection: View {
 
 struct SpecificationsSection: View {
     let product: WorkbenchProduct
+    let selectedSize: PriceEntry?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -243,7 +266,11 @@ struct SpecificationsSection: View {
                 .font(.headline)
 
             SpecRow(label: "Series", value: product.series)
-            SpecRow(label: "Model", value: product.modelPrefix)
+            SpecRow(label: "Model Prefix", value: product.modelPrefix)
+            if let selected = selectedSize {
+                SpecRow(label: "Part Number", value: selected.partNumber(modelPrefix: product.modelPrefix))
+                SpecRow(label: "Size", value: selected.size.displayName)
+            }
             SpecRow(label: "Load Capacity", value: product.loadCapacity)
             SpecRow(label: "Core", value: product.coreThickness)
             SpecRow(label: "Apron", value: product.apronSize)
