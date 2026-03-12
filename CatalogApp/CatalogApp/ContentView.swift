@@ -8,17 +8,23 @@ struct ContentView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     // Header
-                    VStack(alignment: .leading, spacing: 4) {
+                    VStack(alignment: .center, spacing: 4) {
+                        Image("BenchProLogo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 50)
+                            .padding(.horizontal)
+
                         Text("Kennedy Series")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .padding(.horizontal)
 
                         Text("Our best-selling workbench • Tested to 6,600 lbs")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
-                            .padding(.horizontal)
                     }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal)
 
                     // Top Type Filter
                     TopTypeFilterView(

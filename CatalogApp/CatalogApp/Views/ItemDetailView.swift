@@ -57,7 +57,6 @@ struct WorkbenchDetailView: View {
                     // Specs badges
                     HStack(spacing: 12) {
                         SpecBadge(icon: "scalemass", text: product.loadCapacity)
-                        SpecBadge(icon: "shippingbox", text: product.shipsIn)
                     }
 
                     Divider()
@@ -113,17 +112,7 @@ struct WorkbenchDetailView: View {
                     // Specifications
                     SpecificationsSection(product: product, selectedSize: selectedSize, selectedGauge: selectedGauge)
 
-                    // Contact / Quote button
-                    Button(action: {}) {
-                        Label("Request a Quote", systemImage: "envelope")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(.blue)
-                            .foregroundStyle(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 14))
-                    }
-
+                    // Contact
                     Button(action: {}) {
                         Label("Call (888) 700-9888", systemImage: "phone")
                             .font(.subheadline)
@@ -337,7 +326,6 @@ struct SpecificationsSection: View {
             SpecRow(label: "Load Capacity", value: product.loadCapacity)
             SpecRow(label: "Core", value: product.coreThickness)
             SpecRow(label: "Apron", value: product.apronSize)
-            SpecRow(label: "Ships In", value: product.shipsIn)
             SpecRow(label: "Available Sizes", value: "\(product.sizes.count) configurations")
         }
     }

@@ -71,14 +71,7 @@ struct ProductCard: View {
                 .font(.caption2)
                 .foregroundStyle(.secondary)
 
-            // Ships badge
-            HStack(spacing: 4) {
-                Image(systemName: "shippingbox")
-                Text(product.shipsIn)
-            }
-            .font(.caption2)
-            .foregroundStyle(.green)
-        }
+}
         .padding(10)
         .background(Color(.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 12))
