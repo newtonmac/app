@@ -235,11 +235,6 @@ struct ColorSelectorSection: View {
 
                 colorRow(colorOptions: premiumColors)
 
-                if let upcharge = selectedColor?.upcharge, selectedColor?.isPremium == true {
-                    Text(upcharge)
-                        .font(.caption2)
-                        .foregroundStyle(.orange)
-                }
             }
         }
     }

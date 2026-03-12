@@ -109,7 +109,6 @@ struct ColorOption: Identifiable, Hashable, Codable {
     let name: String
     let hexColor: String
     var isPremium: Bool = false
-    var upcharge: String? = nil  // e.g. "$60 first / $16 each additional"
 }
 
 // MARK: - Gauge Option
