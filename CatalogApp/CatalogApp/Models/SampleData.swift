@@ -175,9 +175,20 @@ struct KennedyData {
         }
     }
 
+    /// Maps color + thickness to the matching Resin product
+    static func resinProduct(color: ResinColor, thickness: ResinThickness) -> WorkbenchProduct {
+        switch (color, thickness) {
+        case (.black, .one): return resinBlack1
+        case (.black, .threeQuarter): return resinBlack075
+        case (.white, .one): return resinWhite1
+        case (.white, .threeQuarter): return resinWhite075
+        }
+    }
+
     static let allProducts: [WorkbenchProduct] = [
         formicaSquareEdge,      // Single Formica entry; edge variants selectable in detail view
         butcherBlock1Oiled,     // Single Butcher Block entry; thickness/finish selectable in detail view
+        resinBlack1,            // Single Resin entry; color/thickness/edge selectable in detail view
         esdStaticControl,
         cleanroomLaminate,
         cleanroomESD,
@@ -330,5 +341,45 @@ struct KennedyData {
         modelPrefix: "KPB",
         sizes: standardSizes,
         paintColors: allPaintColors
+    )
+
+    // MARK: Resin Top - Black 1"
+    static let resinBlack1 = WorkbenchProduct(
+        series: "Kennedy",
+        topType: .resinBlack1,
+        modelPrefix: "KY",
+        sizes: standardSizes,
+        paintColors: allPaintColors,
+        coreThickness: "1\" Resin"
+    )
+
+    // MARK: Resin Top - Black 3/4"
+    static let resinBlack075 = WorkbenchProduct(
+        series: "Kennedy",
+        topType: .resinBlack075,
+        modelPrefix: "KZ",
+        sizes: standardSizes,
+        paintColors: allPaintColors,
+        coreThickness: "3/4\" Resin"
+    )
+
+    // MARK: Resin Top - White 1"
+    static let resinWhite1 = WorkbenchProduct(
+        series: "Kennedy",
+        topType: .resinWhite1,
+        modelPrefix: "KYW",
+        sizes: standardSizes,
+        paintColors: allPaintColors,
+        coreThickness: "1\" Resin"
+    )
+
+    // MARK: Resin Top - White 3/4"
+    static let resinWhite075 = WorkbenchProduct(
+        series: "Kennedy",
+        topType: .resinWhite075,
+        modelPrefix: "KZW",
+        sizes: standardSizes,
+        paintColors: allPaintColors,
+        coreThickness: "3/4\" Resin"
     )
 }

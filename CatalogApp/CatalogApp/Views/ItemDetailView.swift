@@ -10,6 +10,17 @@ struct WorkbenchDetailView: View {
     @State private var selectedEdgeStyle: FormicaEdgeStyle = .square
     @State private var selectedBlockThickness: ButcherBlockThickness = .one
     @State private var selectedBlockFinish: ButcherBlockFinish = .oiled
+    @State private var selectedResinColor: ResinColor = .black
+    @State private var selectedResinThickness: ResinThickness = .one
+    @State private var selectedResinEdge: ResinEdgeStyle = .square
+
+    /// Suffix appended to part number (e.g. "-RFE" for resin round front edge)
+    private var partNumberSuffix: String {
+        if product.topType.isResin && selectedResinEdge == .round {
+            return " - RFE"
+        }
+        return ""
+    }
 
     /// Returns the correct product variant based on user selections.
     private var activeProduct: WorkbenchProduct {
@@ -17,6 +28,8 @@ struct WorkbenchDetailView: View {
             return KennedyData.formicaProduct(for: selectedEdgeStyle)
         } else if product.topType.isButcherBlock {
             return KennedyData.butcherBlockProduct(thickness: selectedBlockThickness, finish: selectedBlockFinish)
+        } else if product.topType.isResin {
+            return KennedyData.resinProduct(color: selectedResinColor, thickness: selectedResinThickness)
         }
         return product
     }
@@ -58,7 +71,7 @@ struct WorkbenchDetailView: View {
                         HStack(spacing: 6) {
                             Image(systemName: "number")
                                 .foregroundStyle(.blue)
-                            Text("Part #: \(selected.partNumber(modelPrefix: activeProduct.modelPrefix, gaugeSuffix: selectedGauge?.suffix))")
+                            Text("Part #: \(selected.partNumber(modelPrefix: activeProduct.modelPrefix, gaugeSuffix: selectedGauge?.suffix))\(partNumberSuffix)")
                                 .fontWeight(.semibold)
                             Text("(\(selected.displayName))")
                                 .foregroundStyle(.secondary)
@@ -97,6 +110,17 @@ struct WorkbenchDetailView: View {
                         ButcherBlockSelectorSection(
                             selectedThickness: $selectedBlockThickness,
                             selectedFinish: $selectedBlockFinish
+                        )
+
+                        Divider()
+                    }
+
+                    // Resin Options
+                    if product.topType.isResin {
+                        ResinSelectorSection(
+                            selectedColor: $selectedResinColor,
+                            selectedThickness: $selectedResinThickness,
+                            selectedEdge: $selectedResinEdge
                         )
 
                         Divider()
@@ -143,7 +167,7 @@ struct WorkbenchDetailView: View {
                     Divider()
 
                     // Specifications
-                    SpecificationsSection(product: activeProduct, selectedSize: selectedSize, selectedGauge: selectedGauge)
+                    SpecificationsSection(product: activeProduct, selectedSize: selectedSize, selectedGauge: selectedGauge, partNumberSuffix: partNumberSuffix)
 
                     // Contact
                     Button(action: {}) {
@@ -239,6 +263,75 @@ struct ButcherBlockSelectorSection: View {
                             .padding(.vertical, 10)
                             .background(selectedFinish == finish ? Color.blue : Color(.systemGray6))
                             .foregroundStyle(selectedFinish == finish ? .white : .primary)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Resin Selector
+
+struct ResinSelectorSection: View {
+    @Binding var selectedColor: ResinColor
+    @Binding var selectedThickness: ResinThickness
+    @Binding var selectedEdge: ResinEdgeStyle
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Color")
+                .font(.headline)
+
+            HStack(spacing: 10) {
+                ForEach(ResinColor.allCases) { color in
+                    Button(action: { selectedColor = color }) {
+                        Text(color.rawValue)
+                            .font(.subheadline)
+                            .fontWeight(selectedColor == color ? .semibold : .regular)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(selectedColor == color ? Color.blue : Color(.systemGray6))
+                            .foregroundStyle(selectedColor == color ? .white : .primary)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+
+            Text("Thickness")
+                .font(.headline)
+
+            HStack(spacing: 10) {
+                ForEach(ResinThickness.allCases) { thickness in
+                    Button(action: { selectedThickness = thickness }) {
+                        Text(thickness.rawValue)
+                            .font(.subheadline)
+                            .fontWeight(selectedThickness == thickness ? .semibold : .regular)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(selectedThickness == thickness ? Color.blue : Color(.systemGray6))
+                            .foregroundStyle(selectedThickness == thickness ? .white : .primary)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+
+            Text("Edge Style")
+                .font(.headline)
+
+            HStack(spacing: 10) {
+                ForEach(ResinEdgeStyle.allCases) { edge in
+                    Button(action: { selectedEdge = edge }) {
+                        Text(edge.rawValue)
+                            .font(.subheadline)
+                            .fontWeight(selectedEdge == edge ? .semibold : .regular)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(selectedEdge == edge ? Color.blue : Color(.systemGray6))
+                            .foregroundStyle(selectedEdge == edge ? .white : .primary)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
                     .buttonStyle(.plain)
@@ -448,6 +541,7 @@ struct SpecificationsSection: View {
     let product: WorkbenchProduct
     let selectedSize: WorkbenchSize?
     var selectedGauge: GaugeOption? = nil
+    var partNumberSuffix: String = ""
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -458,7 +552,7 @@ struct SpecificationsSection: View {
             SpecRow(label: "Top", value: product.topType.topMaterial)
             SpecRow(label: "Edge", value: product.topType.edgeType)
             if let selected = selectedSize {
-                SpecRow(label: "Part Number", value: selected.partNumber(modelPrefix: product.modelPrefix, gaugeSuffix: selectedGauge?.suffix))
+                SpecRow(label: "Part Number", value: selected.partNumber(modelPrefix: product.modelPrefix, gaugeSuffix: selectedGauge?.suffix) + partNumberSuffix)
                 SpecRow(label: "Size", value: selected.displayName)
             }
             if let gauge = selectedGauge {
