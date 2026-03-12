@@ -64,7 +64,7 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .cleanroomESD:
             return "Cleanroom LisStat™ ESD static control laminate for ESD-sensitive cleanroom environments."
         case .stainlessSteel:
-            return "Stainless steel top with square cut front edge. Ideal for labs and food preparation areas."
+            return "18-gauge stainless steel top with square cut front edge. Ideal for labs and food preparation areas."
         case .paintedSteel:
             return "Painted steel top with square cut front edge. Available in 12-gauge and 14-gauge. Heavy-duty industrial surface."
         case .disposableParticleboard:
