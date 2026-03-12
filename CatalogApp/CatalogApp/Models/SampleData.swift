@@ -152,7 +152,7 @@ struct KennedyData {
     static let esdStaticControl = WorkbenchProduct(
         series: "Kennedy",
         topType: .esdStaticControl,
-        modelPrefix: "KD-222",
+        modelPrefix: "KD",
         priceEntries: [
             entry(24, 24, 307.99), entry(24, 30, 325.99), entry(24, 36, 345.99),
             entry(24, 48, 381.99), entry(24, 60, 419.99), entry(24, 72, 455.99),
@@ -198,7 +198,7 @@ struct KennedyData {
     static let cleanroomESD = WorkbenchProduct(
         series: "Kennedy",
         topType: .cleanroomESD,
-        modelPrefix: "KDCR-222",
+        modelPrefix: "KDCR",
         priceEntries: [
             entry(24, 24, 322.99), entry(24, 30, 349.99), entry(24, 36, 378.99),
             entry(24, 48, 433.99), entry(24, 60, 488.99), entry(24, 72, 545.99),
