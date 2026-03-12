@@ -16,14 +16,56 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
     case stainlessSteel = "Stainless Steel"
     case paintedSteel = "Painted Steel"
     case disposableParticleboard = "Disposable Particleboard"
+    case resinBlack1 = "Resin Top - Black 1\""
+    case resinBlack075 = "Resin Top - Black 3/4\""
+    case resinWhite1 = "Resin Top - White 1\""
+    case resinWhite075 = "Resin Top - White 3/4\""
 
     var id: String { rawValue }
 
+    var isFormica: Bool {
+        switch self {
+        case .formicaRoundEdge, .formicaTMoldEdge, .formicaSquareEdge: return true
+        default: return false
+        }
+    }
+
+    var isResin: Bool {
+        switch self {
+        case .resinBlack1, .resinBlack075, .resinWhite1, .resinWhite075: return true
+        default: return false
+        }
+    }
+
+    var isButcherBlock: Bool {
+        switch self {
+        case .butcherBlock1Oiled, .butcherBlock1Lacquered,
+             .butcherBlock175Oiled, .butcherBlock175Lacquered: return true
+        default: return false
+        }
+    }
+
+    /// Name shown on grid cards (no "Kennedy" prefix, variants consolidated)
+    var gridName: String {
+        switch self {
+        case .formicaRoundEdge, .formicaTMoldEdge, .formicaSquareEdge: return "Formica"
+        case .butcherBlock1Oiled, .butcherBlock1Lacquered,
+             .butcherBlock175Oiled, .butcherBlock175Lacquered: return "Butcher Block"
+        case .esdStaticControl: return "ESD / Static Control"
+        case .cleanroomLaminate: return "Cleanroom"
+        case .cleanroomESD: return "Cleanroom ESD"
+        case .stainlessSteel: return "Stainless Steel"
+        case .paintedSteel: return "Painted Steel"
+        case .disposableParticleboard: return "Particleboard"
+        case .resinBlack1, .resinBlack075, .resinWhite1, .resinWhite075: return "Resin"
+        }
+    }
+
     var shortName: String {
         switch self {
-        case .formicaRoundEdge: return "Formica (Round)"
-        case .formicaTMoldEdge: return "Formica (T-Mold)"
-        case .formicaSquareEdge: return "Formica (Square)"
+        case .formicaRoundEdge: return "Formica Round"
+        case .formicaTMoldEdge: return "Formica T-Mold"
+        case .formicaSquareEdge: return "Formica Square"
         case .butcherBlock1Oiled: return "Butcher Block 1\" Oiled"
         case .butcherBlock1Lacquered: return "Butcher Block 1\" Lacquered"
         case .butcherBlock175Oiled: return "Butcher Block 1-3/4\" Oiled"
@@ -34,6 +76,10 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .stainlessSteel: return "Stainless Steel"
         case .paintedSteel: return "Painted Steel"
         case .disposableParticleboard: return "Particleboard"
+        case .resinBlack1: return "Resin Black 1\""
+        case .resinBlack075: return "Resin Black 3/4\""
+        case .resinWhite1: return "Resin White 1\""
+        case .resinWhite075: return "Resin White 3/4\""
         }
     }
 
@@ -52,13 +98,68 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .stainlessSteel: return "KN"
         case .paintedSteel: return "KM"
         case .disposableParticleboard: return "KPB"
+        case .resinBlack1: return "KY"
+        case .resinBlack075: return "KZ"
+        case .resinWhite1: return "KYW"
+        case .resinWhite075: return "KZW"
+        }
+    }
+
+    var topMaterial: String {
+        switch self {
+        case .formicaRoundEdge, .formicaTMoldEdge, .formicaSquareEdge: return "Formica Laminate"
+        case .butcherBlock1Oiled, .butcherBlock1Lacquered: return "Solid Butcher Block 1\""
+        case .butcherBlock175Oiled, .butcherBlock175Lacquered: return "Solid Butcher Block 1-3/4\""
+        case .esdStaticControl: return "ESD Static Control Laminate"
+        case .cleanroomLaminate: return "Cleanroom Laminate"
+        case .cleanroomESD: return "Cleanroom ESD Laminate"
+        case .stainlessSteel: return "Stainless Steel"
+        case .paintedSteel: return "Painted Steel"
+        case .disposableParticleboard: return "Particleboard"
+        case .resinBlack1, .resinBlack075: return "Resin - Black"
+        case .resinWhite1, .resinWhite075: return "Resin - White"
+        }
+    }
+
+    var edgeType: String {
+        switch self {
+        case .formicaRoundEdge: return "Radiused"
+        case .formicaTMoldEdge: return "T-Mold Bumper"
+        case .formicaSquareEdge: return "Square Cut"
+        case .butcherBlock1Oiled, .butcherBlock175Oiled: return "Radiused (Oiled)"
+        case .butcherBlock1Lacquered, .butcherBlock175Lacquered: return "Square Cut (Lacquered)"
+        case .esdStaticControl, .cleanroomLaminate, .cleanroomESD: return "Square Cut"
+        case .stainlessSteel: return "Square Cut"
+        case .paintedSteel: return "Square Cut"
+        case .disposableParticleboard: return "Square Cut"
+        case .resinBlack1, .resinBlack075, .resinWhite1, .resinWhite075: return "Square Cut"
+        }
+    }
+
+    var imageName: String {
+        switch self {
+        case .formicaRoundEdge: return "formica_round"
+        case .formicaTMoldEdge: return "formica_tmold"
+        case .formicaSquareEdge: return "formica_square"
+        case .butcherBlock1Oiled: return "butcher_block_1_oiled"
+        case .butcherBlock1Lacquered: return "butcher_block_1_lacquered"
+        case .butcherBlock175Oiled: return "butcher_block_175_oiled"
+        case .butcherBlock175Lacquered: return "butcher_block_175_lacquered"
+        case .esdStaticControl: return "esd_laminate"
+        case .cleanroomLaminate: return "painted_steel"
+        case .cleanroomESD: return "cleanroom_esd"
+        case .stainlessSteel: return "stainless_steel"
+        case .paintedSteel: return "cleanroom_laminate"
+        case .disposableParticleboard: return "particleboard"
+        case .resinBlack1, .resinBlack075: return "painted_steel"
+        case .resinWhite1, .resinWhite075: return "resin_white"
         }
     }
 
     var description: String {
         switch self {
         case .formicaRoundEdge, .formicaTMoldEdge, .formicaSquareEdge:
-            return "Formica laminate surface on 1.2\" solid wood core. Durable and easy to clean."
+            return "Formica laminate surface on 1.125\" solid wood core. Durable and easy to clean."
         case .butcherBlock1Oiled:
             return "100% solid butcher block hardwood, 1\" thick, oiled finish with round front edge."
         case .butcherBlock1Lacquered:
@@ -79,6 +180,8 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
             return "Painted steel top with square cut front edge. Available in 12-gauge and 14-gauge. Heavy-duty industrial surface."
         case .disposableParticleboard:
             return "Heavy 45# particleboard, 1-1/8\" thick. Economical disposable top option."
+        case .resinBlack1, .resinBlack075, .resinWhite1, .resinWhite075:
+            return "Chemical-resistant resin top. Available in black and white, with square cut or round front edge options."
         }
     }
 }
@@ -145,7 +248,7 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
         paintColors: [ColorOption] = [],
         gaugeOptions: [GaugeOption] = [],
         loadCapacity: String = "Tested to 6,600 lbs",
-        coreThickness: String = "1.2\" Solid Wood Core",
+        coreThickness: String = "1.125\" Solid Wood Core",
         apronSize: String = "2\" x 1\" Tube",
         shipsIn: String = "1-5 Business Days"
     ) {
@@ -165,5 +268,80 @@ struct WorkbenchProduct: Identifiable, Hashable, Codable {
 
     var displayName: String {
         "\(series) - \(topType.shortName)"
+    }
+}
+
+// MARK: - Formica Edge Style
+
+enum FormicaEdgeStyle: String, CaseIterable, Identifiable {
+    case square = "Square"
+    case round = "Round"
+    case tMold = "T-Mold"
+
+    var id: String { rawValue }
+
+    var topType: TopType {
+        switch self {
+        case .square: return .formicaSquareEdge
+        case .round: return .formicaRoundEdge
+        case .tMold: return .formicaTMoldEdge
+        }
+    }
+}
+
+// MARK: - Butcher Block Options
+
+enum ButcherBlockThickness: String, CaseIterable, Identifiable {
+    case one = "1\""
+    case oneThreeQuarter = "1-3/4\""
+
+    var id: String { rawValue }
+}
+
+enum ButcherBlockFinish: String, CaseIterable, Identifiable {
+    case oiled = "Oiled"
+    case lacquered = "Lacquered"
+
+    var id: String { rawValue }
+
+    func topType(thickness: ButcherBlockThickness) -> TopType {
+        switch (thickness, self) {
+        case (.one, .oiled): return .butcherBlock1Oiled
+        case (.one, .lacquered): return .butcherBlock1Lacquered
+        case (.oneThreeQuarter, .oiled): return .butcherBlock175Oiled
+        case (.oneThreeQuarter, .lacquered): return .butcherBlock175Lacquered
+        }
+    }
+}
+
+// MARK: - Resin Options
+
+enum ResinColor: String, CaseIterable, Identifiable {
+    case black = "Black"
+    case white = "White"
+
+    var id: String { rawValue }
+}
+
+enum ResinThickness: String, CaseIterable, Identifiable {
+    case one = "1\""
+    case threeQuarter = "3/4\""
+
+    var id: String { rawValue }
+}
+
+enum ResinEdgeStyle: String, CaseIterable, Identifiable {
+    case square = "Square Cut"
+    case round = "Round Front"
+
+    var id: String { rawValue }
+}
+
+func resinTopType(color: ResinColor, thickness: ResinThickness) -> TopType {
+    switch (color, thickness) {
+    case (.black, .one): return .resinBlack1
+    case (.black, .threeQuarter): return .resinBlack075
+    case (.white, .one): return .resinWhite1
+    case (.white, .threeQuarter): return .resinWhite075
     }
 }

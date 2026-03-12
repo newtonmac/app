@@ -10,11 +10,6 @@ struct ProductGridView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("\(products.count) Top Options")
-                .font(.headline)
-                .foregroundStyle(.secondary)
-                .padding(.horizontal)
-
             if products.isEmpty {
                 ContentUnavailableView(
                     "No Workbenches Found",
@@ -47,16 +42,25 @@ struct ProductCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            // Icon area
-            Image(systemName: "table.furniture")
-                .font(.system(size: 32))
-                .foregroundStyle(.blue)
-                .frame(maxWidth: .infinity)
-                .frame(height: 80)
-                .background(Color.blue.opacity(0.08))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+            // Product image
+            if UIImage(named: product.topType.imageName) != nil {
+                Image(product.topType.imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 60)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            } else {
+                Image(systemName: "table.furniture")
+                    .font(.system(size: 28))
+                    .foregroundStyle(.blue)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 60)
+                    .background(Color.blue.opacity(0.08))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
 
-            Text("\(product.series) \(product.topType.shortName)")
+            Text(product.topType.gridName)
                 .font(.subheadline)
                 .fontWeight(.medium)
                 .lineLimit(2)
