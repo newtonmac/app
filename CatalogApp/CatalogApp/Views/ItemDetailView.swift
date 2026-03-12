@@ -356,7 +356,7 @@ struct SpecificationsSection: View {
             }
             SpecRow(label: "Load Capacity", value: product.loadCapacity)
             SpecRow(label: "Core", value: product.coreThickness)
-            SpecRow(label: "Apron", value: product.apronSize)
+            SpecRow(label: "Apron (Top Support)", value: product.apronSize)
             SpecRow(label: "Available Sizes", value: "\(product.sizes.count) configurations")
         }
     }
