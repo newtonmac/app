@@ -48,6 +48,10 @@ struct LandingPageView: View {
                     CabinetsView()
                 case .cleanroom:
                     CleanroomProductsView()
+                case .cartsRacks:
+                    CartsRacksView()
+                case .componentsParts:
+                    ComponentsPartsView()
                 }
             }
         }

@@ -7,6 +7,8 @@ enum Category: String, CaseIterable, Identifiable, Hashable, Codable {
     case chairs = "Chairs"
     case cabinets = "Cabinets"
     case cleanroom = "Cleanroom Products"
+    case cartsRacks = "Carts & Racks"
+    case componentsParts = "Components & Parts"
 
     var id: String { rawValue }
 
@@ -16,6 +18,8 @@ enum Category: String, CaseIterable, Identifiable, Hashable, Codable {
         case .chairs: return "chair"
         case .cabinets: return "cabinet"
         case .cleanroom: return "humidity"
+        case .cartsRacks: return "cart"
+        case .componentsParts: return "wrench.and.screwdriver"
         }
     }
 
@@ -25,6 +29,8 @@ enum Category: String, CaseIterable, Identifiable, Hashable, Codable {
         case .chairs: return "cat_chairs"
         case .cabinets: return "cat_cabinets"
         case .cleanroom: return "cat_cleanroom"
+        case .cartsRacks: return "cat_carts"
+        case .componentsParts: return "cat_components"
         }
     }
 }
@@ -217,6 +223,84 @@ enum CleanroomProductType: String, CaseIterable, Identifiable, Hashable {
         case .gowningUnits: return "Stainless steel storage"
         case .gowningBenches: return "Gowning area seating"
         case .passThru: return "Material transfer"
+        }
+    }
+}
+
+// MARK: - Cart & Rack Type
+
+enum CartRackType: String, CaseIterable, Identifiable, Hashable {
+    case trayCarts = "Tray Carts"
+    case stencilCarts = "Stencil Carts"
+    case chassisCarts = "Chassis Carts"
+    case smtStorage = "SMT Component Storage"
+    case solderPallet = "Solder Pallet Carts"
+    case platformCart = "Platform Carts"
+    case pushCarts = "Push Carts"
+    case cartonRack = "Carton Rack"
+
+    var id: String { rawValue }
+
+    var systemImage: String {
+        switch self {
+        case .trayCarts: return "tray.2"
+        case .stencilCarts: return "rectangle.stack"
+        case .chassisCarts: return "shippingbox"
+        case .smtStorage: return "cpu"
+        case .solderPallet: return "square.grid.3x3"
+        case .platformCart: return "cart"
+        case .pushCarts: return "cart.fill"
+        case .cartonRack: return "rectangle.split.3x3"
+        }
+    }
+
+    var imageName: String {
+        "cart_\(id.lowercased().replacingOccurrences(of: " ", with: "_"))"
+    }
+
+    var subtitle: String {
+        switch self {
+        case .trayCarts: return "Multi-tray storage"
+        case .stencilCarts: return "Stencil organization"
+        case .chassisCarts: return "Open top design"
+        case .smtStorage: return "Component storage"
+        case .solderPallet: return "Solder pallet transport"
+        case .platformCart: return "Flat platform design"
+        case .pushCarts: return "Mobile transport"
+        case .cartonRack: return "Unistrut-style design"
+        }
+    }
+}
+
+// MARK: - Components & Parts Type
+
+enum ComponentPartType: String, CaseIterable, Identifiable, Hashable {
+    case chairComponents = "Chair Components"
+    case replacementTops = "Replacement Tops"
+    case frames = "Frames"
+    case custom = "Custom Products"
+
+    var id: String { rawValue }
+
+    var systemImage: String {
+        switch self {
+        case .chairComponents: return "gearshape.2"
+        case .replacementTops: return "rectangle.topthird.inset.filled"
+        case .frames: return "rectangle.dashed"
+        case .custom: return "star.bubble"
+        }
+    }
+
+    var imageName: String {
+        "component_\(id.lowercased().replacingOccurrences(of: " ", with: "_"))"
+    }
+
+    var subtitle: String {
+        switch self {
+        case .chairComponents: return "Industrial chair parts"
+        case .replacementTops: return "Workbench top replacements"
+        case .frames: return "Workbench frames"
+        case .custom: return "Tell us what you need"
         }
     }
 }
