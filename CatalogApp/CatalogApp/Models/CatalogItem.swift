@@ -151,7 +151,7 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .stainlessSteel: return "stainless_steel"
         case .paintedSteel: return "cleanroom_laminate"
         case .disposableParticleboard: return "particleboard"
-        case .resinBlack1, .resinBlack075: return "painted_steel"
+        case .resinBlack1, .resinBlack075: return "phenolic_resin"
         case .resinWhite1, .resinWhite075: return "resin_white"
         }
     }
