@@ -16,12 +16,23 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
     case stainlessSteel = "Stainless Steel"
     case paintedSteel = "Painted Steel"
     case disposableParticleboard = "Disposable Particleboard"
+    case resinBlack1 = "Resin Top - Black 1\""
+    case resinBlack075 = "Resin Top - Black 3/4\""
+    case resinWhite1 = "Resin Top - White 1\""
+    case resinWhite075 = "Resin Top - White 3/4\""
 
     var id: String { rawValue }
 
     var isFormica: Bool {
         switch self {
         case .formicaRoundEdge, .formicaTMoldEdge, .formicaSquareEdge: return true
+        default: return false
+        }
+    }
+
+    var isResin: Bool {
+        switch self {
+        case .resinBlack1, .resinBlack075, .resinWhite1, .resinWhite075: return true
         default: return false
         }
     }
@@ -46,6 +57,7 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .stainlessSteel: return "Stainless Steel"
         case .paintedSteel: return "Painted Steel"
         case .disposableParticleboard: return "Particleboard"
+        case .resinBlack1, .resinBlack075, .resinWhite1, .resinWhite075: return "Resin"
         }
     }
 
@@ -64,6 +76,10 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .stainlessSteel: return "Stainless Steel"
         case .paintedSteel: return "Painted Steel"
         case .disposableParticleboard: return "Particleboard"
+        case .resinBlack1: return "Resin Black 1\""
+        case .resinBlack075: return "Resin Black 3/4\""
+        case .resinWhite1: return "Resin White 1\""
+        case .resinWhite075: return "Resin White 3/4\""
         }
     }
 
@@ -82,6 +98,10 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .stainlessSteel: return "KN"
         case .paintedSteel: return "KM"
         case .disposableParticleboard: return "KPB"
+        case .resinBlack1: return "KRB1"
+        case .resinBlack075: return "KRB075"
+        case .resinWhite1: return "KRW1"
+        case .resinWhite075: return "KRW075"
         }
     }
 
@@ -96,6 +116,8 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .stainlessSteel: return "Stainless Steel"
         case .paintedSteel: return "Painted Steel"
         case .disposableParticleboard: return "Particleboard"
+        case .resinBlack1, .resinBlack075: return "Resin - Black"
+        case .resinWhite1, .resinWhite075: return "Resin - White"
         }
     }
 
@@ -110,6 +132,7 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .stainlessSteel: return "Square Cut"
         case .paintedSteel: return "Square Cut"
         case .disposableParticleboard: return "Square Cut"
+        case .resinBlack1, .resinBlack075, .resinWhite1, .resinWhite075: return "Square Cut"
         }
     }
 
@@ -128,6 +151,8 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         case .stainlessSteel: return "stainless_steel"
         case .paintedSteel: return "painted_steel"
         case .disposableParticleboard: return "particleboard"
+        case .resinBlack1, .resinBlack075: return "resin_black"
+        case .resinWhite1, .resinWhite075: return "resin_white"
         }
     }
 
@@ -155,6 +180,8 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
             return "Painted steel top with square cut front edge. Available in 12-gauge and 14-gauge. Heavy-duty industrial surface."
         case .disposableParticleboard:
             return "Heavy 45# particleboard, 1-1/8\" thick. Economical disposable top option."
+        case .resinBlack1, .resinBlack075, .resinWhite1, .resinWhite075:
+            return "Chemical-resistant resin top. Available in black and white, with square cut or round front edge options."
         }
     }
 }
@@ -284,5 +311,37 @@ enum ButcherBlockFinish: String, CaseIterable, Identifiable {
         case (.oneThreeQuarter, .oiled): return .butcherBlock175Oiled
         case (.oneThreeQuarter, .lacquered): return .butcherBlock175Lacquered
         }
+    }
+}
+
+// MARK: - Resin Options
+
+enum ResinColor: String, CaseIterable, Identifiable {
+    case black = "Black"
+    case white = "White"
+
+    var id: String { rawValue }
+}
+
+enum ResinThickness: String, CaseIterable, Identifiable {
+    case one = "1\""
+    case threeQuarter = "3/4\""
+
+    var id: String { rawValue }
+}
+
+enum ResinEdgeStyle: String, CaseIterable, Identifiable {
+    case square = "Square Cut"
+    case round = "Round Front"
+
+    var id: String { rawValue }
+}
+
+func resinTopType(color: ResinColor, thickness: ResinThickness) -> TopType {
+    switch (color, thickness) {
+    case (.black, .one): return .resinBlack1
+    case (.black, .threeQuarter): return .resinBlack075
+    case (.white, .one): return .resinWhite1
+    case (.white, .threeQuarter): return .resinWhite075
     }
 }
