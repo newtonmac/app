@@ -209,6 +209,9 @@ struct ColorSelectorSection: View {
     let colors: [ColorOption]
     @Binding var selectedColor: ColorOption?
 
+    private var standardColors: [ColorOption] { colors.filter { !$0.isPremium } }
+    private var premiumColors: [ColorOption] { colors.filter { $0.isPremium } }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
@@ -218,11 +221,45 @@ struct ColorSelectorSection: View {
                     Text("– \(color.name)")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
+                    if color.isPremium {
+                        Text("Premium")
+                            .font(.caption2)
+                            .fontWeight(.semibold)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color.orange)
+                            .foregroundStyle(.white)
+                            .clipShape(Capsule())
+                    }
                 }
             }
 
+            // Standard colors
+            colorRow(colorOptions: standardColors)
+
+            // Premium colors
+            if !premiumColors.isEmpty {
+                Text("Premium Colors")
+                    .font(.caption)
+                    .foregroundStyle(.orange)
+                    .fontWeight(.semibold)
+
+                colorRow(colorOptions: premiumColors)
+
+                if let upcharge = selectedColor?.upcharge, selectedColor?.isPremium == true {
+                    Text(upcharge)
+                        .font(.caption2)
+                        .foregroundStyle(.orange)
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func colorRow(colorOptions: [ColorOption]) -> some View {
+        ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
-                ForEach(colors) { color in
+                ForEach(colorOptions) { color in
                     Button(action: { selectedColor = color }) {
                         Circle()
                             .fill(Color(hex: color.hexColor))

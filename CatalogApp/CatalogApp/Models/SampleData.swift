@@ -21,6 +21,74 @@ struct KennedyData {
         ColorOption(name: "Beige", hexColor: "#D4C5A9"),
     ]
 
+    // MARK: - Premium Laminate Colors
+
+    static let premiumSolidLaminateColors: [ColorOption] = [
+        ColorOption(name: "Steel", hexColor: "#71797E", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Oxygen", hexColor: "#E8F0FE", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Dark Chocolate", hexColor: "#3B2F2F", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Peaceful Blue", hexColor: "#A2C4E0", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Sol", hexColor: "#F5C518", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Grasshopper", hexColor: "#7DB46C", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Pumpkin", hexColor: "#E8751A", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Brite White", hexColor: "#F8F8FF", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Ivory", hexColor: "#FFFFF0", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Graystone", hexColor: "#928E85", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Graphite", hexColor: "#41424C", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Stop Red", hexColor: "#CF1020", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Spectrum Blue", hexColor: "#1F75FE", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Marine Blue", hexColor: "#005B8E", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Almond", hexColor: "#EFDECD", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Platinum", hexColor: "#E5E4E2", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Storm", hexColor: "#555D6E", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Champagne", hexColor: "#F7E7CE", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Folkstone", hexColor: "#6F6A61", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Burgundy", hexColor: "#800020", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Hunter Green", hexColor: "#355E3B", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Navy Blue", hexColor: "#000080", isPremium: true, upcharge: "$60 first / $16 additional"),
+    ]
+
+    static let premiumPatternLaminateColors: [ColorOption] = [
+        ColorOption(name: "Giallo Granite", hexColor: "#C9B458", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Perlato Granite", hexColor: "#D6CAB5", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Labrador Granite", hexColor: "#3B3C36", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Himalayan Slate", hexColor: "#6C7A89", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Basalt Slate", hexColor: "#4E5754", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Colorado Slate", hexColor: "#8B7D6B", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Concrete Stone", hexColor: "#B0AFA7", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Carrara Bianco", hexColor: "#E8E4E1", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Blackstone", hexColor: "#2C2C2C", isPremium: true, upcharge: "$60 first / $16 additional"),
+    ]
+
+    static let premiumWoodgrainLaminateColors: [ColorOption] = [
+        ColorOption(name: "Oak Woodgrain", hexColor: "#B8860B", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Walnut Woodgrain", hexColor: "#5C4033", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Maple Woodgrain", hexColor: "#C9A959", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Cherry Woodgrain", hexColor: "#9B111E", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Ash Woodgrain", hexColor: "#C4B59D", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Mahogany Woodgrain", hexColor: "#C04000", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Teak Woodgrain", hexColor: "#9A7B4F", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Finnish Oak Woodgrain", hexColor: "#D4B896", isPremium: true, upcharge: "$60 first / $16 additional"),
+        ColorOption(name: "Ebony Ribbonwood", hexColor: "#3C2415", isPremium: true, upcharge: "$60 first / $16 additional"),
+    ]
+
+    // MARK: - Premium Paint Colors
+
+    static let premiumPaintColors: [ColorOption] = [
+        ColorOption(name: "Dark Blue (80% Gloss)", hexColor: "#0E2F56", isPremium: true, upcharge: "$90 first / $12 additional"),
+        ColorOption(name: "Dark Red (90% Gloss)", hexColor: "#8B0000", isPremium: true, upcharge: "$90 first / $12 additional"),
+        ColorOption(name: "International Orange", hexColor: "#FF4F00", isPremium: true, upcharge: "$90 first / $12 additional"),
+        ColorOption(name: "Safety Orange", hexColor: "#FF6600", isPremium: true, upcharge: "$90 first / $12 additional"),
+        ColorOption(name: "Yellow", hexColor: "#FFD700", isPremium: true, upcharge: "$90 first / $12 additional"),
+        ColorOption(name: "Traffic Green", hexColor: "#007B3A", isPremium: true, upcharge: "$90 first / $12 additional"),
+        ColorOption(name: "D.O.T. Green", hexColor: "#006B3C", isPremium: true, upcharge: "$90 first / $12 additional"),
+        ColorOption(name: "Bronze", hexColor: "#CD7F32", isPremium: true, upcharge: "$90 first / $12 additional"),
+        ColorOption(name: "ANSI Gray #49", hexColor: "#8A8D8F", isPremium: true, upcharge: "$90 first / $12 additional"),
+        ColorOption(name: "ANSI Gray #61", hexColor: "#6B6E70", isPremium: true, upcharge: "$90 first / $12 additional"),
+        ColorOption(name: "Antique White", hexColor: "#FAEBD7", isPremium: true, upcharge: "$90 first / $12 additional"),
+        ColorOption(name: "Almond Paint", hexColor: "#EFDECD", isPremium: true, upcharge: "$90 first / $12 additional"),
+    ]
+
     static let esdPaintColors: [ColorOption] = [
         ColorOption(name: "Blue", hexColor: "#1A5276"),
         ColorOption(name: "Gray", hexColor: "#7F8C8D"),
@@ -102,14 +170,23 @@ struct KennedyData {
         disposableParticleboard,
     ]
 
+    // MARK: - Combined Color Arrays (standard + premium)
+
+    static let allLaminateColors: [ColorOption] = standardLaminateColors
+        + premiumSolidLaminateColors
+        + premiumPatternLaminateColors
+        + premiumWoodgrainLaminateColors
+
+    static let allPaintColors: [ColorOption] = standardPaintColors + premiumPaintColors
+
     // MARK: Formica Laminate - Round Front Edge (Model KF)
     static let formicaRoundEdge = WorkbenchProduct(
         series: "Kennedy",
         topType: .formicaRoundEdge,
         modelPrefix: "KF",
         sizes: standardSizes,
-        laminateColors: standardLaminateColors,
-        paintColors: standardPaintColors
+        laminateColors: allLaminateColors,
+        paintColors: allPaintColors
     )
 
     // MARK: Formica Laminate - T-Mold Bumper Edge (Model KT)
@@ -118,8 +195,8 @@ struct KennedyData {
         topType: .formicaTMoldEdge,
         modelPrefix: "KT",
         sizes: standardSizes,
-        laminateColors: standardLaminateColors,
-        paintColors: standardPaintColors
+        laminateColors: allLaminateColors,
+        paintColors: allPaintColors
     )
 
     // MARK: Formica Laminate - Square Cut Edge (Model KE)
@@ -128,8 +205,8 @@ struct KennedyData {
         topType: .formicaSquareEdge,
         modelPrefix: "KE",
         sizes: standardSizes,
-        laminateColors: standardLaminateColors,
-        paintColors: standardPaintColors
+        laminateColors: allLaminateColors,
+        paintColors: allPaintColors
     )
 
     // MARK: Solid Butcher Block - Oiled (Model KWR)
@@ -138,7 +215,7 @@ struct KennedyData {
         topType: .butcherBlockOiled,
         modelPrefix: "KWR",
         sizes: standardSizes,
-        paintColors: standardPaintColors
+        paintColors: allPaintColors
     )
 
     // MARK: Solid Butcher Block - Lacquered (Model KWR-L)
@@ -147,7 +224,7 @@ struct KennedyData {
         topType: .butcherBlockLacquered,
         modelPrefix: "KWR-L",
         sizes: standardSizes,
-        paintColors: standardPaintColors
+        paintColors: allPaintColors
     )
 
     // MARK: ESD Static Control (Model KD)
@@ -192,7 +269,7 @@ struct KennedyData {
         topType: .stainlessSteel,
         modelPrefix: "KN",
         sizes: stainlessSteelSizes,
-        paintColors: standardPaintColors
+        paintColors: allPaintColors
     )
 
     // MARK: Painted Steel (Model KM)
@@ -201,7 +278,7 @@ struct KennedyData {
         topType: .paintedSteel,
         modelPrefix: "KM",
         sizes: paintedSteelSizes,
-        paintColors: standardPaintColors,
+        paintColors: allPaintColors,
         gaugeOptions: [
             GaugeOption(label: "12 Gauge", suffix: "12"),
             GaugeOption(label: "14 Gauge", suffix: "14"),
@@ -214,6 +291,6 @@ struct KennedyData {
         topType: .disposableParticleboard,
         modelPrefix: "KPB",
         sizes: standardSizes,
-        paintColors: standardPaintColors
+        paintColors: allPaintColors
     )
 }
