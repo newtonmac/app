@@ -60,10 +60,8 @@ struct SeriesCard: View {
             if UIImage(named: series.imageName) != nil {
                 Image(series.imageName)
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
                     .frame(maxWidth: .infinity)
-                    .frame(height: 74)
-                    .clipped()
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             } else {
                 Image(systemName: series.systemImage)
