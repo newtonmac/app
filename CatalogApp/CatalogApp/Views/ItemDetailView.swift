@@ -361,7 +361,7 @@ struct SpecificationsSection: View {
             SpecRow(label: "Steel", value: "16 Gauge Cold Rolled")
             SpecRow(label: "Apron (Top Support)", value: product.apronSize)
             SpecRow(label: "Legs", value: "2\" x 2\" Tube w/ 2\" x 1\" Spreaders")
-            SpecRow(label: "Levelling Glides", value: "Adjusting")
+            SpecRow(label: "Includes", value: "Levelling Glides & Hardware")
             SpecRow(label: "Available Sizes", value: "\(product.sizes.count) configurations")
         }
     }
