@@ -8,23 +8,23 @@ struct ContentView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     // Header
-                    VStack(alignment: .center, spacing: 4) {
+                    VStack(alignment: .center, spacing: 8) {
                         Image("BenchProLogo")
                             .resizable()
                             .scaledToFit()
-                            .frame(height: 50)
-                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity)
+                            .padding(.horizontal, 40)
 
                         Text("Kennedy Series")
-                            .font(.title2)
-                            .fontWeight(.bold)
+                            .font(.title3)
+                            .fontWeight(.semibold)
 
                         Text("Our best-selling workbench • Tested to 6,600 lbs")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
                     .frame(maxWidth: .infinity)
-                    .padding(.horizontal)
+                    .padding(.top, 8)
 
                     // Top Type Filter
                     TopTypeFilterView(
@@ -38,7 +38,6 @@ struct ContentView: View {
                 }
                 .padding(.bottom)
             }
-            .navigationTitle("BenchPro")
             .searchable(text: $viewModel.searchText, prompt: "Search workbenches...")
         }
     }
