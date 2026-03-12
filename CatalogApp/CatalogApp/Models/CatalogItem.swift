@@ -55,6 +55,24 @@ enum TopType: String, CaseIterable, Identifiable, Hashable, Codable {
         }
     }
 
+    var imageName: String {
+        switch self {
+        case .formicaRoundEdge: return "formica_round"
+        case .formicaTMoldEdge: return "formica_tmold"
+        case .formicaSquareEdge: return "formica_square"
+        case .butcherBlock1Oiled: return "butcher_block_1_oiled"
+        case .butcherBlock1Lacquered: return "butcher_block_1_lacquered"
+        case .butcherBlock175Oiled: return "butcher_block_175_oiled"
+        case .butcherBlock175Lacquered: return "butcher_block_175_lacquered"
+        case .esdStaticControl: return "esd_laminate"
+        case .cleanroomLaminate: return "cleanroom_laminate"
+        case .cleanroomESD: return "cleanroom_esd"
+        case .stainlessSteel: return "stainless_steel"
+        case .paintedSteel: return "painted_steel"
+        case .disposableParticleboard: return "particleboard"
+        }
+    }
+
     var description: String {
         switch self {
         case .formicaRoundEdge, .formicaTMoldEdge, .formicaSquareEdge:

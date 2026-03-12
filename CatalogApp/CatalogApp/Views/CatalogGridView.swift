@@ -47,14 +47,24 @@ struct ProductCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            // Icon area
-            Image(systemName: "table.furniture")
-                .font(.system(size: 32))
-                .foregroundStyle(.blue)
-                .frame(maxWidth: .infinity)
-                .frame(height: 80)
-                .background(Color.blue.opacity(0.08))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+            // Product image
+            if UIImage(named: product.topType.imageName) != nil {
+                Image(product.topType.imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 80)
+                    .clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            } else {
+                Image(systemName: "table.furniture")
+                    .font(.system(size: 32))
+                    .foregroundStyle(.blue)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 80)
+                    .background(Color.blue.opacity(0.08))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            }
 
             Text("\(product.series) \(product.topType.shortName)")
                 .font(.subheadline)

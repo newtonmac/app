@@ -13,12 +13,21 @@ struct WorkbenchDetailView: View {
             VStack(alignment: .leading, spacing: 20) {
                 // Hero
                 VStack(spacing: 8) {
-                    Image(systemName: "table.furniture")
-                        .font(.system(size: 80))
-                        .foregroundStyle(.blue)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 200)
-                        .background(Color.blue.opacity(0.08))
+                    if UIImage(named: product.topType.imageName) != nil {
+                        Image(product.topType.imageName)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 200)
+                            .clipped()
+                    } else {
+                        Image(systemName: "table.furniture")
+                            .font(.system(size: 80))
+                            .foregroundStyle(.blue)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 200)
+                            .background(Color.blue.opacity(0.08))
+                    }
 
                     Text("Kennedy Series")
                         .font(.caption)
