@@ -362,6 +362,7 @@ struct SpecificationsSection: View {
             SpecRow(label: "Apron (Top Support)", value: product.apronSize)
             SpecRow(label: "Legs", value: "2\" x 2\" Tube w/ 2\" x 1\" Spreaders")
             SpecRow(label: "Includes", value: "Levelling Glides & Hardware")
+            SpecRow(label: "Assembly", value: "1 Bolt Per Leg")
             SpecRow(label: "Available Sizes", value: "\(product.sizes.count) configurations")
         }
     }
