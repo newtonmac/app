@@ -132,7 +132,10 @@ struct HardingData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 20,000 lbs",
         coreThickness: "1.125\" Solid Wood Core",
-        apronSize: "3\" x 3\" Tube",
+        apronSize: "3\" x 2\" Tube",
+        steelSpec: "14 Gauge Cold Rolled",
+        legSpec: "3\" x 3\" Tube w/ 3\" x 2\" Spreaders",
+        assemblySpec: "2 Bolts Per Leg",
         shipsIn: "3-7 Business Days"
     )
 
@@ -146,7 +149,10 @@ struct HardingData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 20,000 lbs",
         coreThickness: "1.125\" Solid Wood Core",
-        apronSize: "3\" x 3\" Tube",
+        apronSize: "3\" x 2\" Tube",
+        steelSpec: "14 Gauge Cold Rolled",
+        legSpec: "3\" x 3\" Tube w/ 3\" x 2\" Spreaders",
+        assemblySpec: "2 Bolts Per Leg",
         shipsIn: "3-7 Business Days"
     )
 
@@ -160,7 +166,10 @@ struct HardingData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 20,000 lbs",
         coreThickness: "1.125\" Solid Wood Core",
-        apronSize: "3\" x 3\" Tube",
+        apronSize: "3\" x 2\" Tube",
+        steelSpec: "14 Gauge Cold Rolled",
+        legSpec: "3\" x 3\" Tube w/ 3\" x 2\" Spreaders",
+        assemblySpec: "2 Bolts Per Leg",
         shipsIn: "3-7 Business Days"
     )
 
@@ -173,7 +182,10 @@ struct HardingData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 20,000 lbs",
         coreThickness: "1-3/4\" Solid Butcher Block",
-        apronSize: "3\" x 3\" Tube",
+        apronSize: "3\" x 2\" Tube",
+        steelSpec: "14 Gauge Cold Rolled",
+        legSpec: "3\" x 3\" Tube w/ 3\" x 2\" Spreaders",
+        assemblySpec: "2 Bolts Per Leg",
         shipsIn: "3-7 Business Days"
     )
 
@@ -186,7 +198,10 @@ struct HardingData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 20,000 lbs",
         coreThickness: "1-3/4\" Solid Butcher Block",
-        apronSize: "3\" x 3\" Tube",
+        apronSize: "3\" x 2\" Tube",
+        steelSpec: "14 Gauge Cold Rolled",
+        legSpec: "3\" x 3\" Tube w/ 3\" x 2\" Spreaders",
+        assemblySpec: "2 Bolts Per Leg",
         shipsIn: "3-7 Business Days"
     )
 
@@ -199,7 +214,10 @@ struct HardingData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 20,000 lbs",
         coreThickness: "1\" Resin",
-        apronSize: "3\" x 3\" Tube",
+        apronSize: "3\" x 2\" Tube",
+        steelSpec: "14 Gauge Cold Rolled",
+        legSpec: "3\" x 3\" Tube w/ 3\" x 2\" Spreaders",
+        assemblySpec: "2 Bolts Per Leg",
         shipsIn: "3-7 Business Days"
     )
 
@@ -212,7 +230,10 @@ struct HardingData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 20,000 lbs",
         coreThickness: "1\" Resin",
-        apronSize: "3\" x 3\" Tube",
+        apronSize: "3\" x 2\" Tube",
+        steelSpec: "14 Gauge Cold Rolled",
+        legSpec: "3\" x 3\" Tube w/ 3\" x 2\" Spreaders",
+        assemblySpec: "2 Bolts Per Leg",
         shipsIn: "3-7 Business Days"
     )
 
@@ -226,7 +247,10 @@ struct HardingData {
         paintColors: esdPaintColors,
         loadCapacity: "Tested to 20,000 lbs",
         coreThickness: "1.125\" Solid Wood Core",
-        apronSize: "3\" x 3\" Tube",
+        apronSize: "3\" x 2\" Tube",
+        steelSpec: "14 Gauge Cold Rolled",
+        legSpec: "3\" x 3\" Tube w/ 3\" x 2\" Spreaders",
+        assemblySpec: "2 Bolts Per Leg",
         shipsIn: "3-7 Business Days"
     )
 
@@ -239,7 +263,10 @@ struct HardingData {
         paintColors: standardPaintColors,
         loadCapacity: "Tested to 20,000 lbs",
         coreThickness: "18 Gauge Stainless Steel",
-        apronSize: "3\" x 3\" Tube",
+        apronSize: "3\" x 2\" Tube",
+        steelSpec: "14 Gauge Cold Rolled",
+        legSpec: "3\" x 3\" Tube w/ 3\" x 2\" Spreaders",
+        assemblySpec: "2 Bolts Per Leg",
         shipsIn: "3-7 Business Days"
     )
 
