@@ -27,15 +27,9 @@ struct WorkbenchDetailView: View {
 
                 VStack(alignment: .leading, spacing: 16) {
                     // Title
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(product.topType.rawValue)
-                            .font(.title2)
-                            .fontWeight(.bold)
-
-                        Text("Model: \(product.modelPrefix)")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                    }
+                    Text("\(product.series) \(product.topType.shortName)")
+                        .font(.title2)
+                        .fontWeight(.bold)
 
                     // Part Number display
                     if let selected = selectedSize {
@@ -57,7 +51,6 @@ struct WorkbenchDetailView: View {
                     // Specs badges
                     HStack(spacing: 12) {
                         SpecBadge(icon: "scalemass", text: product.loadCapacity)
-                        SpecBadge(icon: "shippingbox", text: product.shipsIn)
                     }
 
                     Divider()
@@ -113,19 +106,9 @@ struct WorkbenchDetailView: View {
                     // Specifications
                     SpecificationsSection(product: product, selectedSize: selectedSize, selectedGauge: selectedGauge)
 
-                    // Contact / Quote button
+                    // Contact
                     Button(action: {}) {
-                        Label("Request a Quote", systemImage: "envelope")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(.blue)
-                            .foregroundStyle(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 14))
-                    }
-
-                    Button(action: {}) {
-                        Label("Call (888) 700-9888", systemImage: "phone")
+                        Label("Call (619) 478-9400", systemImage: "phone")
                             .font(.subheadline)
                             .frame(maxWidth: .infinity)
                             .padding()
@@ -180,13 +163,9 @@ struct SizeSelectorSection: View {
                     FlowLayout(spacing: 8) {
                         ForEach(sizes(forDepth: depth)) { size in
                             Button(action: { selectedSize = size }) {
-                                VStack(spacing: 2) {
-                                    Text(size.partNumber(modelPrefix: modelPrefix, gaugeSuffix: gaugeSuffix))
-                                        .font(.caption2)
-                                        .fontWeight(.semibold)
-                                    Text("\(size.depth)\" x \(size.length)\"")
-                                        .font(.caption2)
-                                }
+                                Text("\(size.depth)\" x \(size.length)\"")
+                                    .font(.caption2)
+                                    .fontWeight(.semibold)
                                 .padding(.horizontal, 10)
                                 .padding(.vertical, 6)
                                 .background(selectedSize == size ? Color.blue : Color(.systemGray6))
@@ -246,11 +225,6 @@ struct ColorSelectorSection: View {
 
                 colorRow(colorOptions: premiumColors)
 
-                if let upcharge = selectedColor?.upcharge, selectedColor?.isPremium == true {
-                    Text(upcharge)
-                        .font(.caption2)
-                        .foregroundStyle(.orange)
-                }
             }
         }
     }
@@ -325,8 +299,7 @@ struct SpecificationsSection: View {
             Text("Specifications")
                 .font(.headline)
 
-            SpecRow(label: "Series", value: product.series)
-            SpecRow(label: "Model Prefix", value: product.modelPrefix)
+            SpecRow(label: "Series", value: "\(product.series) \(product.topType.shortName)")
             if let selected = selectedSize {
                 SpecRow(label: "Part Number", value: selected.partNumber(modelPrefix: product.modelPrefix, gaugeSuffix: selectedGauge?.suffix))
                 SpecRow(label: "Size", value: selected.displayName)
@@ -337,7 +310,6 @@ struct SpecificationsSection: View {
             SpecRow(label: "Load Capacity", value: product.loadCapacity)
             SpecRow(label: "Core", value: product.coreThickness)
             SpecRow(label: "Apron", value: product.apronSize)
-            SpecRow(label: "Ships In", value: product.shipsIn)
             SpecRow(label: "Available Sizes", value: "\(product.sizes.count) configurations")
         }
     }

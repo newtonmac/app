@@ -56,29 +56,17 @@ struct ProductCard: View {
                 .background(Color.blue.opacity(0.08))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
 
-            Text(product.topType.shortName)
+            Text("\(product.series) \(product.topType.shortName)")
                 .font(.subheadline)
                 .fontWeight(.medium)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
 
-            Text("Model: \(product.modelPrefix)")
-                .font(.caption)
-                .fontWeight(.semibold)
-                .foregroundStyle(.blue)
-
             Text("\(product.sizes.count) sizes available")
                 .font(.caption2)
                 .foregroundStyle(.secondary)
 
-            // Ships badge
-            HStack(spacing: 4) {
-                Image(systemName: "shippingbox")
-                Text(product.shipsIn)
-            }
-            .font(.caption2)
-            .foregroundStyle(.green)
-        }
+}
         .padding(10)
         .background(Color(.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 12))
